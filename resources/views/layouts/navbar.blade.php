@@ -7,16 +7,16 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Animals</a>
+            <a class="nav-link" href="{{ route('animals') }}">Animals</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-disabled="true">Register</a>
+            <a class="nav-link" href="#">Register</a>
           </li>
         </ul>
       </div>

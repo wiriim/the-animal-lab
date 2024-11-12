@@ -19,6 +19,19 @@ class AnimalSeeder extends Seeder
             if(!$firstLine) {
                 Animal::create([
                     'name' => $data[0],
+                    'height' => $data[1],
+                    'weight' => $data[2],
+                    'color' => $data[3],
+                    'lifespan' => $data[4],
+                    'diet' => $data[5],
+                    'habitat' => $data[6],
+                    'predators' => $data[7],
+                    'avgspeed' => $data[8],
+                    'topspeed' => $data[13],
+                    'countries' => $data[9],
+                    'conservationStatus' => $data[10],
+                    'family' => $data[11],
+                    'socialStructure' => $data[14],
                 ]);
             }
             $firstLine = false;
