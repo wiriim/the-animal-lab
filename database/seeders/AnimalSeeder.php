@@ -17,6 +17,7 @@ class AnimalSeeder extends Seeder
         $firstLine = true;
         while(($data = fgetcsv($csfFile)) !== false) {
             if(!$firstLine) {
+                $imgLoc = 'images/animals/'.$data[0].'.jpg';
                 Animal::create([
                     'name' => $data[0],
                     'height' => $data[1],
@@ -32,6 +33,7 @@ class AnimalSeeder extends Seeder
                     'conservationStatus' => $data[10],
                     'family' => $data[11],
                     'socialStructure' => $data[14],
+                    'image' => $imgLoc,
                 ]);
             }
             $firstLine = false;

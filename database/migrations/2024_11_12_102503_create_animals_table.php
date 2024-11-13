@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('conservationStatus');
             $table->string('family');
             $table->string('socialStructure');
-
+            $table->string('image');
             $table->timestamps();
         });
     }
