@@ -13,6 +13,7 @@
                 </div>
             @endforeach
         </div>
+        {{$animals->onEachSide(2)->links()}}
     </div>
 
 @endsection

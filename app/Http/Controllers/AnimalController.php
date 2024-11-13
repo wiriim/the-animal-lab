@@ -12,7 +12,7 @@ class AnimalController extends Controller
     }
 
     public function getAllAnimals(){
-        $animals = Animal::all();
+        $animals = Animal::paginate(15);
         return view('pages.animals',['animals' => $animals]);
     }
 }
