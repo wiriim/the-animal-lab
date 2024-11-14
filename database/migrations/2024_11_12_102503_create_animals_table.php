@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('family');
             $table->string('socialStructure');
             $table->string('image');
+            $table->text('description');
             $table->timestamps();
         });
     }

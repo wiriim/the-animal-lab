@@ -34,6 +34,7 @@ class AnimalSeeder extends Seeder
                     'family' => $data[11],
                     'socialStructure' => $data[14],
                     'image' => $imgLoc,
+                    'description' => "empty",
                 ]);
             }
             $firstLine = false;
