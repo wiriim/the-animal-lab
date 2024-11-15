@@ -22,3 +22,5 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 
 Route::post('/register', [UserController::class, 'store']);
 
+Route::get('animals/{animal}', [AnimalController::class,'readMore'])->name('read-more');
+
