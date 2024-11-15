@@ -23,7 +23,7 @@
           
           @if (Auth::check())
             <li class="nav-item me-3">
-              <a class="nav-link text-light" href="#">{{ Auth::user()->name}}</a>
+              <a class="nav-link text-light {{Route::is('profile') ? 'text-decoration-underline' : ''}}" href="{{ route('profile') }}">{{ Auth::user()->name}}</a>
             </li>
           @endif
         </ul>

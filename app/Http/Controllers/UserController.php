@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function profile(){
+        return view("pages.profile");
+    }
+
     public function login(){
         return view("pages.login");
     }
