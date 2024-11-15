@@ -13,6 +13,8 @@
                         <h3 style="margin-top: -15px">{{$animal->name}}</h3>
                         <p class="lead mt-1">Family: {{$animal->family}}</p>
                         <p class="lead" style="margin-top: -10px">Diet: {{$animal->diet}}</p>
+                        <p>{{{Str::limit($animal->description, 400)}}}</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
                 
