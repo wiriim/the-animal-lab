@@ -33,6 +33,7 @@ class AnimalSeeder extends Seeder
                     'countries' => $data[9],
                     'conservationStatus' => $data[10],
                     'family' => $data[11],
+                    'gestationPeriod' => $data[12],
                     'socialStructure' => $data[14],
                     'image' => $imgLoc,
                     'description' => $data[16],

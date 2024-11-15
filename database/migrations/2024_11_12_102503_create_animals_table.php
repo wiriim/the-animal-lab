@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('countries');
             $table->string('conservationStatus');
             $table->string('family');
+            $table->string('gestationPeriod');
             $table->string('socialStructure');
             $table->string('image');
             $table->text('description');
