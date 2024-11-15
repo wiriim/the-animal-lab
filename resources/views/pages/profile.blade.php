@@ -4,7 +4,11 @@
     
     <div class="container-lg">
         <div class="fw-bolder">{{Auth::user()->name}}</div>
-        <a class="btn btn-light border-black" href="#" role="button">Logout</a>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button class="btn btn-light border-dark" type="submit">Logout</button>
+        </form>
+        
     </div>
 
 @endsection

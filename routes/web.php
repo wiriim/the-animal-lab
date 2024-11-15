@@ -16,3 +16,5 @@ Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
