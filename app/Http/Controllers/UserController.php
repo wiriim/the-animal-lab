@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class UserController extends Controller
     }
 
     public function login(){
-        return view("pages.login");
+        return view("auth.login");
     }
 
     public function logout(Request $request){
@@ -38,5 +39,32 @@ class UserController extends Controller
             'error' => 'The provided credentials do not match our records.',
         ]);
 
+    }
+
+    public function register(Request $request){
+        return view("auth.register");
+    }
+
+    public function store(Request $request){
+
+        $validate = $request->validate([
+            'name' => ['required'],
+            'email'=> ['required', 'email'],
+            'password'=> ['required'],
+            'confPassword' => ['required'],
+        ]);
+
+        if ($request->password != $request->confPassword) {
+            return redirect()->route("register")->withErrors([
+                'error' => 'Password does not match'
+            ]);
+        }
+
+        User::create([
+            'name' => $validate['name'],
+            'email'=> $validate['email'],
+            'password'=> $validate['password'],
+        ]);
+        return redirect()->route('login')->with('success','Register Successful');
     }
 }
