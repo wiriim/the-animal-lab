@@ -15,9 +15,17 @@
           <li class="nav-item me-3">
             <a class="nav-link text-light" href="#">About Us</a>
           </li>
-          <li class="nav-item me-3">
-            <a class="nav-link text-light" href="#">Login</a>
-          </li>
+          @if (!Auth::check())
+            <li class="nav-item me-3">
+              <a class="nav-link text-light {{Route::is('login') ? 'text-decoration-underline active' : ''}}" href="{{ route('login') }}">Login</a>
+            </li>
+          @endif
+          
+          @if (Auth::check())
+            <li class="nav-item me-3">
+              <a class="nav-link text-light" href="#">{{ Auth::user()->name}}</a>
+            </li>
+          @endif
         </ul>
       </div>
     </div>
