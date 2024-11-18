@@ -6,10 +6,10 @@ This project aims to show a whole variety of animals be it exotic or generic, an
 
 Here are the sneak peeks of our website: **(Early Preview)**
 
--Homepage
+- Homepage
 ![homepage](public/images/homepage.jpeg)
 
--Animals Page
+- Animals Page
 ![homepage](public/images/animals-page.jpeg)
 
 
