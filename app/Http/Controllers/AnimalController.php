@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Comment;
+use Auth;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -17,6 +19,11 @@ class AnimalController extends Controller
     }
 
     public function readMore(Animal $animal){
-        return view('pages.read-more', ['animal'=> $animal]);
+        $user_id = Auth::user()->id;
+        $comments = Comment::where('user_id', '===', $user_id);
+        return view('pages.read-more', [
+            'animal'=> $animal,
+            'comments' => $comments,
+            ]);
     }
 }

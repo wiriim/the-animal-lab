@@ -32,6 +32,40 @@
         </div>
         <p class="mt-4">{{$animal->description}}</p>
 
+        <section class="comment-section">
+            <h1 class="comment-heading">Comments</h1>
+
+            <div class="space mt-5"></div>
+
+            @if (!$comments->first())
+                <h4>No Comments. Be the first to comment!</h4>
+            @endif
+
+            @if ($comments->first())
+                <h2>There Are Comments</h2>
+            @endif
+
+            @if (!Auth::check())
+                <p class="lead">Login to comment! <a href="{{ route('login') }}">Login</a></p>
+            @endif
+
+            @if (Auth::check())
+            <form>
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="comment" class="form-label">Comment</label>
+                <textarea name="" id="" cols="30" rows="10" style="display: block; width: 100%"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+                
+            @endif
+        </section>
+
+        <div class="space" style="margin-bottom: 150px"></div>
     </div>
 
 @endsection

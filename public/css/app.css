@@ -27,6 +27,22 @@
     margin-top: -210px;
 }
 
+.comment-heading{
+    display: flex;
+    position: relative;
+}
+
+.comment-heading::after{
+    content: '';
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: rgb(54, 47, 47);
+    display: block;
+    bottom: -10px;
+    position: absolute;
+}
+
 @media (max-width: 768px){
     .home-bg{
         background-position: 20% 20%;
