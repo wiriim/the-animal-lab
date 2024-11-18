@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
+    protected $fillable = [
+        'title',
+        'comment',
+        'user_id',
+        'animal_id'
+    ];
     public function animal(): BelongsTo
     {
         return $this->belongsTo(Animal::class);

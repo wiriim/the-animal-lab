@@ -32,35 +32,62 @@
         </div>
         <p class="mt-4">{{$animal->description}}</p>
 
-        <section class="comment-section">
+        <section class="comment-section mt-5">
             <h1 class="comment-heading">Comments</h1>
 
             <div class="space mt-5"></div>
+            @if (Session::has('success'))
+                <p class="text-success">{{Session::get('success')}}</p>
+            @endif
 
             @if (!$comments->first())
-                <h4>No Comments. Be the first to comment!</h4>
+                <div class="comment-wrapper">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <img src="{{ asset('images/stelle.jpeg') }}" alt="stelle-img" width="100px" height="auto">
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <h4>Be the first to comment</h4>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <h5 style="color:grey;">Help the {{$animal->name}} community by sharing your thoughts.</h5>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             @if ($comments->first())
-                <h2>There Are Comments</h2>
+                @foreach ($comments as $comment)
+                    <div class="container-lg mb-3 border-dark border rounded">
+                        <div class="row">
+                            <div class="col-12 fw-bolder mt-1">
+                                {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}}
+                            </div>
+                            <div class="col-12 mt-3 lead mb-3 fw-bold">{{$comment->title}}</div>
+                            <div class="col-12 mb-3">{{$comment->comment}}</div>
+                        </div>
+                    </div>
+                @endforeach
             @endif
 
             @if (!Auth::check())
                 <p class="lead">Login to comment! <a href="{{ route('login') }}">Login</a></p>
             @endif
 
+            <div class="space mt-5"></div>
             @if (Auth::check())
-            <form>
-                <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="comment" class="form-label">Comment</label>
-                <textarea name="" id="" cols="30" rows="10" style="display: block; width: 100%"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                <form action="{{ route('comment', $animal) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="title" type="text" class="form-control" id="title" aria-describedby="title">
+                    </div>
+                    <div class="mb-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea name="comment" id="comment" cols="30" rows="10" style="display: block; width: 100%; resize:none;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
                 
             @endif
         </section>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,6 @@ Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'store']);
 
 Route::get('animals/{animal}', [AnimalController::class,'readMore'])->name('read-more');
+
+Route::post('/animals/{animal}', [CommentController::class,'store'])->name('comment');
 

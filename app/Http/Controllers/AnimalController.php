@@ -19,8 +19,8 @@ class AnimalController extends Controller
     }
 
     public function readMore(Animal $animal){
-        $user_id = Auth::user()->id;
-        $comments = Comment::where('user_id', '===', $user_id);
+        $comments = Comment::where('animal_id', $animal->id)
+        ->orderBy('created_at','desc')->paginate(15);
         return view('pages.read-more', [
             'animal'=> $animal,
             'comments' => $comments,
