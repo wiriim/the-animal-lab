@@ -30,8 +30,24 @@
                 <p><span class="fw-bold">Gestation Period: </span> {{$animal->gestationPeriod}} (days)</p>
             </div>
         </div>
-        <p class="comment-description mt-4">{{$animal->description}}</p>
 
+        <section class="description-section">
+            <div class="accordion mt-4 border-dark border rounded" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Article
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <p class="comment-description">{{$animal->description}}</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section class="comment-section mt-5">
             <h1 class="comment-heading">Comments</h1>
 
