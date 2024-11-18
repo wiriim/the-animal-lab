@@ -20,4 +20,10 @@ class CommentController extends Controller
 
         return back()->with("success","Comment created");
     }
+
+    public function destroy(Animal $animal, Comment $comment){
+        $comment->delete();
+        return back()->with("success","Comment deleted");
+    }
+
 }

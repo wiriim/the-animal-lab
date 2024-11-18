@@ -25,5 +25,7 @@ Route::post('/register', [UserController::class, 'store']);
 
 Route::get('animals/{animal}', [AnimalController::class,'readMore'])->name('read-more');
 
-Route::post('/animals/{animal}', [CommentController::class,'store'])->name('comment');
+Route::post('/animals/{animal}', [CommentController::class,'store'])->name('comment.store');
+
+Route::get('/animals/{animal}/{comment}', [CommentController::class,'destroy'])->name('comment.destroy');
 
