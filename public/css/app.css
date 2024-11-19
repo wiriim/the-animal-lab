@@ -76,12 +76,27 @@
 }
 
 .content-section{
-    background-color: rgb(54, 47, 47);
-    height: 110%;
+    background-color: rgb(226, 212, 212);
+    height: fit-content;
     width: 100%;
-    color: white;
+    color: black;
 }
 
 .content-section div{
     text-align: justify;
+}
+
+@media (max-width: 1000px){
+    .top-section{
+        background-position: 0 -10px;
+    }
+}
+@media (max-width: 550px){
+    .top-section{
+        background-position: top;
+    }
+    .row-vision p,
+    .row-mission p{
+        margin-top: 50px;
+    }
 }
