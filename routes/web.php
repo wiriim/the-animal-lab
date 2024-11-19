@@ -29,3 +29,7 @@ Route::post('/animals/{animal}', [CommentController::class,'store'])->name('comm
 
 Route::get('/animals/{animal}/{comment}', [CommentController::class,'destroy'])->name('comment.destroy');
 
+Route::get('/about-us', function(){
+    return view('pages.about-us');
+})->name('about-us');
+

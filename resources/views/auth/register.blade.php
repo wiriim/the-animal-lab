@@ -21,8 +21,10 @@
                 <label for="confPassword" class="form-label">Confirm Password</label>
                 <input name="confPassword" type="password" class="form-control" id="confPassword">
             </div>
-            @if ($errors->has('error'))
-              <p class="lead text-danger">{{$errors->first('error')}}</p>
+            @if ($errors->any())
+              @foreach ($errors->all() as $error)
+                <p class="lead text-danger">{{$error}}</p>
+              @endforeach
             @endif
             <button type="submit" class="btn btn-primary">Register</button>
         </form>

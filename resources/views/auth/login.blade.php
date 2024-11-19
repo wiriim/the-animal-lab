@@ -16,8 +16,11 @@
               <label for="password" class="form-label">Password</label>
               <input name="password" type="password" class="form-control" id="password">
             </div>
-            @if ($errors->has('error'))
-              <p class="lead text-danger">{{$errors->first('error')}}</p>
+
+            @if ($errors->any())
+              @foreach ($errors->all() as $error)
+                <p class="lead text-danger">{{$error}}</p>
+              @endforeach
             @endif
             <button type="submit" class="btn btn-primary">Login</button>
         </form>

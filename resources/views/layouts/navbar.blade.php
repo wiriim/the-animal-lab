@@ -13,7 +13,7 @@
             <a class="nav-link text-light {{Route::is('animals') ? 'text-decoration-underline active' : ''}}" href="{{ route('animals') }}">Animals</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link text-light" href="#">About Us</a>
+            <a class="nav-link text-light {{Route::is('about-us') ? 'text-decoration-underline active' : ''}}" href="{{ route('about-us') }}">About Us</a>
           </li>
           @if (!Auth::check())
             <li class="nav-item me-3">
@@ -23,7 +23,7 @@
           
           @if (Auth::check())
             <li class="nav-item me-3">
-              <a class="nav-link text-light {{Route::is('profile') ? 'text-decoration-underline' : ''}}" href="{{ route('profile') }}">{{ Auth::user()->name}}</a>
+              <a class="nav-link text-light {{Route::is('profile') ? 'text-decoration-underline active' : ''}}" href="{{ route('profile') }}">{{ Auth::user()->name}}</a>
             </li>
           @endif
         </ul>

@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function store(Animal $animal, Request $request){
+
+        $validation = $request->validate([
+            "title" => 'required',
+            'comment'=> 'required',
+        ]);
+
         Comment::create([
             "title" => $request->title,
             "comment" => $request->comment,
