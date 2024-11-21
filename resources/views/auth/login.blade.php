@@ -12,16 +12,19 @@
               <label for="email" class="form-label">Email address</label>
               <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
+            @error('email')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input name="password" type="password" class="form-control" id="password">
             </div>
-
-            @if ($errors->any())
-              @foreach ($errors->all() as $error)
-                <p class="lead text-danger">{{$error}}</p>
-              @endforeach
-            @endif
+            @error('password')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('mismatch')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <p>Don't have an account? <a href="{{ route('register') }}">Register Here</a></p>

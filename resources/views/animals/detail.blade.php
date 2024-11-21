@@ -2,6 +2,8 @@
 
 @section('content')
     
+    
+
     <div class="container-lg my-4">
         <div class="row">
             @foreach ($animals as $animal)

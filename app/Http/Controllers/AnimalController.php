@@ -15,7 +15,7 @@ class AnimalController extends Controller
 
     public function getAllAnimals(){
         $animals = Animal::paginate(15);
-        return view('pages.animals',['animals' => $animals]);
+        return view('animals.detail',['animals' => $animals]);
     }
 
     public function readMore(Animal $animal){

@@ -36,7 +36,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('login')->withErrors([
-            'error' => 'The provided credentials do not match our records.',
+            'mismatch' => 'The provided credentials do not match our records.',
         ]);
 
     }
