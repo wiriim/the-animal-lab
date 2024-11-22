@@ -28,6 +28,11 @@ class AnimalController extends Controller
         }
     }
 
+    public function getAnimal(Request $request, String $format){
+        $animals = Animal::where('name', 'LIKE', '%'.$request->animalName.'%')->paginate(15);
+        return view('animals.detail', ['animals' => $animals]);
+    }
+
     public function readMore(Animal $animal){
         $comments = Comment::where('animal_id', $animal->id)
         ->orderBy('created_at','desc')->paginate(15);

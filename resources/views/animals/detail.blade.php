@@ -4,16 +4,27 @@
 
 @section('content')
     
-    <div class="container-lg mt-5">
-        <h3>Display Format: Detail</h3>
-        <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
-            @csrf
-            <button type="submit" class="btn btn-primary">Compact View</button>
-        </form>
+    <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
+        <section class="format-section mb-3">
+            <h3>Display Format: Detail</h3>
+            <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
+                @csrf
+                <button type="submit" class="btn btn-primary">Compact View</button>
+            </form>
+        </section>
+        
+        <section class="search-section">
+            <form action="{{ route('searchAnimal', ['format' => 'detail']) }}" method="GET">
+                @csrf
+                <label class="form-label lead" for="animalName">Search Animal</label>
+                <input class="form-control" type="text" name="animalName" id="animalName" placeholder="Leafy Sea Dragon">
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+        </section>
     </div>
 
     <div class="container-lg my-4">
-        <div class="row">
+        <div class="row ms-3">
             @foreach ($animals as $animal)
                 <div class="container-fluid border rounded border-dark d-flex row mb-3 p-3">
                     <div class="col-md-4">

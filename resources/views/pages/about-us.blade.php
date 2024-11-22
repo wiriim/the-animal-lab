@@ -25,7 +25,7 @@
 
                 <div class="row row-mission mt-5">
                     <div class="col-md-6">
-                        <h1 class="mt-5 mb-3" style="width: fit-content;margin: 0 auto">Our Mission</h1>
+                        <h1 class="mt-5 mb-5" style="width: fit-content;margin: 0 auto">Our Mission</h1>
                         <section class="d-flex" style="height: 70%">
                             <p style="align-self: center">
                                 Our mission is to provide an engaging online platform that showcases the fascinating variety of animal life, highlighting their unique characteristics and natural habitats. Through this platform, we strive to build a global community where individuals can share their thoughts, stories, and experiences about animals, creating meaningful connections with like-minded enthusiasts. We are committed to fostering a love for animals, raising awareness about their importance, and encouraging actions that contribute to their protection and preservation.
@@ -33,7 +33,7 @@
                         </section>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center">
-                        <img src="{{ asset('images/bird-img-modified.png') }}" alt="bear-img" style="max-width: 350px; max-height: 300px; align-self: center;">
+                        <img src="{{ asset('images/bird-img-modified.png') }}" alt="bear-img" style="max-width: 350px; max-height: 300px; align-self: center; min-width: 0px">
                     </div>
                     
                 </div>
