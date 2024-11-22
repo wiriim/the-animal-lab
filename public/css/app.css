@@ -100,3 +100,42 @@
         margin-top: 50px;
     }
 }
+
+.profile-image-wrapper,
+.profile-image{
+    border-radius: 50%;
+}
+
+.profile-image-wrapper{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+}
+
+.profile-image{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.profile-informations{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 700px){
+    .profile-container{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .seperator{
+        display: none;
+    }
+}

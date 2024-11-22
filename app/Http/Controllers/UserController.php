@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function profile(){
-        return view("pages.profile");
+        $comments = Auth::user()->comments()->orderByDesc('created_at')->paginate(15);
+        return view("pages.profile", ['comments'=> $comments]);
     }
 
     public function login(){

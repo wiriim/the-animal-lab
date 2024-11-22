@@ -5,10 +5,16 @@
   <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
     <section class="format-section mb-3">
         <h3>Display Format: Compact</h3>
-        <form action="{{ route('changeFormat', ['format' => 'detail']) }}" method="GET">
+        <div class="format-buttons d-flex" style="gap: 10px">
+          <form action="{{ route('changeFormat', ['format' => 'detail']) }}" method="GET">
+              @csrf
+              <button type="submit" class="btn btn-primary">Detail View</button>
+          </form>
+          <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
             @csrf
-            <button type="submit" class="btn btn-primary">Detail View</button>
-        </form>
+            <button type="submit" class="btn btn-primary">Compact View</button>
+          </form>
+        </div>
     </section>
     
     <section class="search-section">
