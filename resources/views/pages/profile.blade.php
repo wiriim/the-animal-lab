@@ -26,10 +26,11 @@
                         <div class="container-lg mb-3 border-dark border rounded">
                             <div class="row">
                                 <div class="col-12 fw-bolder mt-1 d-flex" style="position: relative">
-                                    {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}} • <a href="{{ route('read-more', $comment->animal) }}"><em>{{$comment->animal->name}}</em></a>
+                                    {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}}
                                     <a href="{{ route('comment.destroy', ['animal'=> $comment->animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4" style="position: absolute; right: 15px;"></i></a>
                                 </div>
-                                <div class="col-12 mt-3 lead mb-3 fw-bold">{{$comment->title}}</div>
+                                <a href="{{ route('read-more', $comment->animal) }}"><em>{{$comment->animal->name}}</em></a>
+                                <div class="col-12 mt-2 lead mb-2 fw-bold">{{$comment->title}}</div>
                                 <div class="col-12 mb-3">{{$comment->comment}}</div>
                             </div>
                         </div>
