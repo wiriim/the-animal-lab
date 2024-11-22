@@ -13,9 +13,19 @@ class AnimalController extends Controller
         return view('pages.home');
     }
 
-    public function getAllAnimals(){
+    public function getAllDetail(){
         $animals = Animal::paginate(15);
         return view('animals.detail',['animals' => $animals]);
+    }
+
+    public function getFormat(String $format){
+        if ($format == 'compact'){
+            $animals = Animal::paginate(20);
+            return view('animals.compact',['animals' => $animals]);
+        }else if ($format == 'detail'){
+            $animals = Animal::paginate(15);
+            return view('animals.detail',['animals' => $animals]);
+        }
     }
 
     public function readMore(Animal $animal){

@@ -9,7 +9,9 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [AnimalController::class, 'index'])->name('home');
 
-Route::get('/animals/detail', [AnimalController::class, 'getAllAnimals'])->name('animals');
+Route::get('/animals/detail', [AnimalController::class, 'getAllDetail'])->name('animals');
+
+Route::get('/animals/detail/{format}', [AnimalController::class, 'getFormat'])->name('changeFormat');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 

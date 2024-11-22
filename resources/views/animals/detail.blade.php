@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
+
+
 @section('content')
     
-    
+    <div class="container-lg mt-5">
+        <h3>Display Format: Detail</h3>
+        <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
+            @csrf
+            <button type="submit" class="btn btn-primary">Compact View</button>
+        </form>
+    </div>
 
     <div class="container-lg my-4">
         <div class="row">
