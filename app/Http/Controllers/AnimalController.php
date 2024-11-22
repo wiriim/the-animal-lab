@@ -29,8 +29,13 @@ class AnimalController extends Controller
     }
 
     public function getAnimal(Request $request, String $format){
-        $animals = Animal::where('name', 'LIKE', '%'.$request->animalName.'%')->paginate(15);
-        return view('animals.detail', ['animals' => $animals]);
+        if($format === 'detail'){
+            $animals = Animal::where('name', 'LIKE', '%'.$request->animalName.'%')->paginate(15);
+            return view('animals.detail', ['animals' => $animals]);
+        }else if($format === 'compact'){
+            $animals = Animal::where('name', 'LIKE', '%'.$request->animalName.'%')->paginate(20);
+            return view('animals.compact', ['animals' => $animals]);
+        }
     }
 
     public function readMore(Animal $animal){

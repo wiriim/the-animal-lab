@@ -24,6 +24,15 @@
     </div>
 
     <div class="container-lg my-4">
+        <div class="d-flex" style="flex-direction: column; align-items: center">
+            @if ($animals->isEmpty())
+                <h1>Can't find the animal</h1>
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="{{ asset('images/stelle.jpeg') }}" alt="stelle-img" width="100px" height="auto">
+                </div>
+            @endif
+        </div>
+        
         <div class="row ms-3">
             @foreach ($animals as $animal)
                 <div class="container-fluid border rounded border-dark d-flex row mb-3 p-3">

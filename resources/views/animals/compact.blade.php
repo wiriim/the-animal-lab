@@ -2,15 +2,33 @@
 
 @section('content')
     
-  <div class="container-lg mt-5">
-    <h3>Display Format: Compact</h3>
-    <form action="{{ route('changeFormat', ['format' => 'detail']) }}" method="GET">
-        @csrf
-        <button type="submit" class="btn btn-primary">Detail View</button>
-    </form>
+  <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
+    <section class="format-section mb-3">
+        <h3>Display Format: Compact</h3>
+        <form action="{{ route('changeFormat', ['format' => 'detail']) }}" method="GET">
+            @csrf
+            <button type="submit" class="btn btn-primary">Detail View</button>
+        </form>
+    </section>
+    
+    <section class="search-section">
+        <form action="{{ route('searchAnimal', ['format' => 'compact']) }}" method="GET">
+            @csrf
+            <label class="form-label lead" for="animalName">Search Animal</label>
+            <input class="form-control" type="text" name="animalName" id="animalName" placeholder="Leafy Sea Dragon">
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+    </section>
   </div>
 
   <div class="container-fluid-lg my-4 d-flex flex-wrap justify-content-center" style="gap: 15px;">
+    @if ($animals->isEmpty())
+      <h1>Can't find the animal</h1>
+      <div class="col-12 d-flex justify-content-center">
+        <img src="{{ asset('images/stelle.jpeg') }}" alt="stelle-img" width="100px" height="auto">
+      </div>
+    @endif
+
     @foreach ($animals as $animal)
       <div class="card mt-2" style="max-width: 300px;">
         <div class="card-image-container" style="min-height: 200px">
