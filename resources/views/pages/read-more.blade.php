@@ -105,18 +105,19 @@
                 <form action="{{ route('comment.store', $animal) }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input name="title" type="text" class="form-control" id="title" aria-describedby="title">
+                        <label for="title" class="form-label">Title</label>
+                        <input name="title" type="text" class="form-control" id="title" aria-describedby="title">
                     </div>
+                    @error('title')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <textarea name="comment" id="comment" cols="30" rows="10" style="display: block; width: 100%; resize:none; padding: 10px"></textarea>
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea name="comment" id="comment" cols="30" rows="10" style="display: block; width: 100%; resize:none; padding: 10px"></textarea>
                     </div>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <p class="lead text-danger">{{$error}}</p>
-                        @endforeach
-                    @endif
+                    @error('comment')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 
