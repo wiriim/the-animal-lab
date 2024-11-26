@@ -21,6 +21,10 @@ Route::post('/login', [UserController::class, 'authenticate']);
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
+Route::view('profile/edit', 'pages.edit')->name('edit');
+
+Route::put('profile/edit', [UserController::class,'edit']);
+
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/register', [UserController::class, 'register'])->name('register');

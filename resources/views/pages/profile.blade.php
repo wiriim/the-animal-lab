@@ -6,9 +6,10 @@
         <div class="profile-informations">
             <h1 class="fw-bolder">{{Auth::user()->name}}</h1>
             <div class="image profile-image-wrapper">
-                <img class="profile-image" src="{{ asset('images/placeholder.png') }}" alt="placeholder">
+                <img class="profile-image" src="{{ asset(Auth::user()->getPicture()) }}" alt="placeholder">
             </div>
             <div class="fs-5"><strong>Email: </strong>{{Auth::user()->email}}</div>
+            <a href="{{ route('edit') }}" class="btn btn-primary">Edit Profile</a>
             <form action="{{ route('logout') }}" method="post" class="mt-4">
                 @csrf
                 <button class="btn btn-light border-dark" type="submit">Logout</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class UserController extends Controller
 {
@@ -68,4 +69,31 @@ class UserController extends Controller
         ]);
         return redirect()->route('login')->with('success','Register Successful');
     }
+
+    public function edit(Request $request){
+        
+        $validate = $request->validate([
+            'name' => 'required',
+            'picture' => 'image|nullable',
+            'email' => 'required|email',
+        ]);
+        
+        $user = Auth::user();
+        if ($request->has('picture')){
+            $path = $request->file('picture')->store('pictures', 'public');
+            $validate['picture'] = $path;
+            if ($user->picture !== null){
+                Storage::disk('public')->delete($user->picture);
+            }
+            $user->picture = $validate['picture'];
+        }
+        
+        $user->name = $validate['name'];
+        $user->email = $validate['email'];
+        $user->save();
+        
+
+        return redirect()->route('profile');
+    }
+
 }

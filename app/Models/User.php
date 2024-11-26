@@ -26,6 +26,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'picture',
         'email',
         'password',
     ];
@@ -51,5 +52,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getPicture(){
+        if ($this->picture){
+            return 'storage/'.$this->picture;
+        }
+        return 'images/nerd-emoji-350x350.jpg';
     }
 }
