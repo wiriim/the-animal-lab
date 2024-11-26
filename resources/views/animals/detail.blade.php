@@ -10,7 +10,7 @@
             <div class="format-buttons d-flex" style="gap: 10px">
                 <form action="{{ route('changeFormat', ['format' => 'detail']) }}" method="GET">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Detail View</button>
+                    <button type="submit" class="btn btn-success">Detail View</button>
                 </form>
                 <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
                   @csrf
@@ -43,8 +43,8 @@
         <div class="row ms-3">
             @foreach ($animals as $animal)
                 <div class="container-fluid border rounded border-dark d-flex row mb-3 p-3">
-                    <div class="col-md-4">
-                        <img src="{{ asset($animal->image) }}" class="rounded" alt="{{$animal->name}}" width="100%" style="max-height: 300px">
+                    <div class="col-md-4 d-flex">
+                        <img src="{{ asset($animal->image) }}" class="rounded" alt="{{$animal->name}}" width="100%" style="max-height: 300px; align-self: center">
                     </div>
                     <div class="col-md-8 mt-3">
                         <h3 style="margin-top: -15px">{{$animal->name}}</h3>

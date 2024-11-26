@@ -12,7 +12,7 @@
           </form>
           <form action="{{ route('changeFormat', ['format' => 'compact']) }}" method="GET">
             @csrf
-            <button type="submit" class="btn btn-primary">Compact View</button>
+            <button type="submit" class="btn btn-success">Compact View</button>
           </form>
         </div>
     </section>
@@ -38,13 +38,13 @@
     @foreach ($animals as $animal)
       <div class="card mt-2" style="max-width: 300px;">
         <div class="card-image-container" style="min-height: 200px">
-          <img src="{{ asset($animal->image) }}" class="card-img-top" alt="{{$animal->name}}" style="max-height: 200px;">
+          <img src="{{ asset($animal->image) }}" class="card-img-top" alt="{{$animal->name}}" style="height: 100%; max-height: 200px;">
         </div>
         
-        <div class="card-body">
+        <div class="card-body d-flex flex-column justify-between">
           <h5 class="card-title">{{$animal->name}}</h5>
-          <p class="card-text">{{{Str::limit($animal->description, 100)}}}</p>
-          <a href="{{ route('read-more', $animal) }}" class="btn btn-primary">Read More</a>
+          <p class="card-text" style="flex: 1">{{{Str::limit($animal->description, 100)}}}</p>
+          <a href="{{ route('read-more', $animal) }}" class="btn btn-primary" style="max-width: 105px">Read More</a>
         </div>
       </div>
       @endforeach

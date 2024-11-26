@@ -46,4 +46,5 @@ class AnimalController extends Controller
             'comments' => $comments,
             ]);
     }
+    
 }

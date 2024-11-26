@@ -4,7 +4,7 @@
     
     <div class="profile-container container-lg mt-5 d-flex" style="gap: 25px">
         <div class="profile-informations">
-            <h1 class="fw-bolder">{{Auth::user()->name}}</h1>
+            <h1 class="fw-bolder text-center">{{Auth::user()->name}}</h1>
             <div class="image profile-image-wrapper">
                 <img class="profile-image" src="{{ asset(Auth::user()->getPicture()) }}" alt="placeholder">
             </div>

@@ -21,12 +21,12 @@ class UserSeeder extends Seeder
             'password' => 'test',
         ]);
         User::create([
-            'name'=> 'William',
+            'name'=> 'William Viriya Halim',
             'email' => 'william@gmail.com',
             'password' => 'william',
         ]);
         User::create([
-            'name'=> 'Jeremy',
+            'name'=> 'Jeremy Sigmatupang',
             'email' => 'jeremy@gmail.com',
             'password' => 'jeremy',
         ]);

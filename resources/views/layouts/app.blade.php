@@ -11,14 +11,20 @@
 </head>
 <body>
 
-    <nav>
-        @include('layouts.navbar')
-    </nav>
+    <div class="layout-container d-flex flex-column" style="height: 100vh">
+        <nav>
+            @include('layouts.navbar')
+        </nav>
     
-    <main>
-        @yield('content')
-    </main>
-
+        <main style="flex: 1">
+            @yield('content')
+        </main>
+    
+        <footer class="footer d-flex justify-content-center" style="min-height: 100px; align-items: center;">
+            <h2 class="lead">Copyright © TheAnimalLab 2024</h2>
+        </footer>
+    </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
