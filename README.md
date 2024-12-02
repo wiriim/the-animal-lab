@@ -6,13 +6,12 @@ This project aims to show a whole variety of animals be it exotic or generic, an
 
 Here are the sneak peeks of our website: **(Early Preview)**
 
-- Homepage
+- Homepage:
 ![homepage](public/images/homepage-img.png)
 
-- Animals Page
+- Animals Page:
 ![animals-page](public/images/animals-page-img.png)
 
-- Read-More Page
+- Read-More Page:
 ![readmore-page](public/images/readmore-page-img.png)
-
 
