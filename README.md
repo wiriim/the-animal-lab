@@ -10,9 +10,9 @@ Here are the sneak peeks of our website: **(Early Preview)**
 ![homepage](public/images/homepage-img.png)
 
 - Animals Page
-![animals-page](public/images/animals-page.jpeg)
+![animals-page](public/images/animals-page-img.png)
 
 - Read-More Page
-![read-more-page](public/images/read-mode-page.jpeg)
+![readmore-page](public/images/readmore-page-img.png)
 
 
