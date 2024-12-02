@@ -21,54 +21,57 @@
         <section class="exotic-section" style="min-height: 700px; padding: 2rem">
             <h2 class="text-black fw-bold" style="text-align: center; display: block;">Find Exotic Animals</h2>
             <div class="exotic-wrapper d-flex justify-content-center mt-5 flex-wrap" style="gap: 2rem">
-                <a href="{{ route('read-more', ['animal'=>'7']) }}" style="text-decoration: none;">
-                    <div class="cards">
-                        <div class="image">
-                            <img src="{{ asset('images/animals/Amazon Rainforest Frog.jpg') }}" alt="Amazon Rainforest Frog" width="100%">
+                <div class="left-animals d-flex flex-wrap justify-content-center" style="gap: 2rem">
+                    <a href="{{ route('read-more', ['animal'=>'7']) }}" style="text-decoration: none;">
+                        <div class="cards">
+                            <div class="image">
+                                <img src="{{ asset('images/animals/Amazon Rainforest Frog.jpg') }}" alt="Amazon Rainforest Frog" width="100%">
+                            </div>
+                            <div class="text ms-2">
+                                <p class="lead fw-bold mt-2">Amazon Rainforest Frog</p>
+                                <p style="max-width: 280px; margin-top: -0.5rem">Frogs are overwhelmingly the most abundant amphibians in the rainforest. More than 1000 species of frogs are found in the Amazon Basin. Unlike temperate frogs which are mostly limited to habitats near water, tropical frogs are most abundant in the trees and relatively few are found near bodies of water on the forest floor.</p>
+                            </div>
                         </div>
-                        <div class="text ms-2">
-                            <p class="lead fw-bold mt-2">Amazon Rainforest Frog</p>
-                            <p style="max-width: 280px; margin-top: -0.5rem">Frogs are overwhelmingly the most abundant amphibians in the rainforest. More than 1000 species of frogs are found in the Amazon Basin. Unlike temperate frogs which are mostly limited to habitats near water, tropical frogs are most abundant in the trees and relatively few are found near bodies of water on the forest floor.</p>
+                    </a>
+                    
+                    <a href="{{ route('read-more', ['animal'=>'98']) }}" style="text-decoration: none;">
+                        <div class="cards">
+                            <div class="image">
+                                <img src="{{ asset('images/animals/Komodo Dragon.jpg') }}" alt="Komodo Dragon" width="100%">
+                            </div>
+                            <div class="text ms-2">
+                                <p class="lead fw-bold mt-2">Komodo Dragon</p>
+                                <p style="max-width: 280px; margin-top: -0.5rem">The Komodo dragon (Varanus komodoensis), also known as the Komodo monitor, is a large reptile of the monitor lizard family Varanidae that is endemic to the Indonesian islands of Komodo, Rinca, Flores, and Gili Motang. It is the largest extant species of lizard, with the males growing to a maximum length of 3 m (9.8 ft) and weighing up to 150 kg (330 lb).</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 
-                <a href="{{ route('read-more', ['animal'=>'98']) }}" style="text-decoration: none;">
-                    <div class="cards">
-                        <div class="image">
-                            <img src="{{ asset('images/animals/Komodo Dragon.jpg') }}" alt="Komodo Dragon" width="100%">
+                <div class="right-animals d-flex flex-wrap justify-content-center" style="gap: 2rem">
+                    <a href="{{ route('read-more', ['animal'=>'170']) }}" style="text-decoration: none;">
+                        <div class="cards">
+                            <div class="image">
+                                <img src="{{ asset('images/animals/Tufted Puffin.jpg') }}" alt="Tufted Puffin" width="100%">
+                            </div>
+                            <div class="text ms-2">
+                                <p class="lead fw-bold mt-2">Tufted Puffin</p>
+                                <p style="max-width: 280px; margin-top: -0.5rem">The tufted puffin (Fratercula cirrhata) is a striking seabird known for its distinctive appearance and vibrant plumage, native to the northern Pacific Ocean. This species of puffin is found along the coasts of Alaska, Canada, and the U.S. Pacific Northwest, as well as some parts of eastern Russia and Japan.</p>
+                            </div>
                         </div>
-                        <div class="text ms-2">
-                            <p class="lead fw-bold mt-2">Komodo Dragon</p>
-                            <p style="max-width: 280px; margin-top: -0.5rem">The Komodo dragon (Varanus komodoensis), also known as the Komodo monitor, is a large reptile of the monitor lizard family Varanidae that is endemic to the Indonesian islands of Komodo, Rinca, Flores, and Gili Motang. It is the largest extant species of lizard, with the males growing to a maximum length of 3 m (9.8 ft) and weighing up to 150 kg (330 lb).</p>
+                    </a>
+                    
+                    <a href="{{ route('read-more', ['animal'=>'125']) }}" style="text-decoration: none;">
+                        <div class="cards">
+                            <div class="image">
+                                <img src="{{ asset('images/animals/Potoo.jpg') }}" alt="Potoo" width="100%">
+                            </div>
+                            <div class="text ms-2">
+                                <p class="lead fw-bold mt-2">Potoo</p>
+                                <p style="max-width: 280px; margin-top: -0.5rem">The potoo is a fascinating and mysterious bird that belongs to the family Nyctibiidae, found primarily in the forests and tropical regions of Central and South America. Known for their cryptic behavior and remarkable camouflage, potoos are nocturnal birds that are most active during the night, making them elusive and difficult to observe in the wild.</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                
-                <a href="{{ route('read-more', ['animal'=>'170']) }}" style="text-decoration: none;">
-                    <div class="cards">
-                        <div class="image">
-                            <img src="{{ asset('images/animals/Tufted Puffin.jpg') }}" alt="Tufted Puffin" width="100%">
-                        </div>
-                        <div class="text ms-2">
-                            <p class="lead fw-bold mt-2">Tufted Puffin</p>
-                            <p style="max-width: 280px; margin-top: -0.5rem">The tufted puffin (Fratercula cirrhata) is a striking seabird known for its distinctive appearance and vibrant plumage, native to the northern Pacific Ocean. This species of puffin is found along the coasts of Alaska, Canada, and the U.S. Pacific Northwest, as well as some parts of eastern Russia and Japan.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="{{ route('read-more', ['animal'=>'125']) }}" style="text-decoration: none;">
-                    <div class="cards">
-                        <div class="image">
-                            <img src="{{ asset('images/animals/Potoo.jpg') }}" alt="Potoo" width="100%">
-                        </div>
-                        <div class="text ms-2">
-                            <p class="lead fw-bold mt-2">Potoo</p>
-                            <p style="max-width: 280px; margin-top: -0.5rem">The potoo is a fascinating and mysterious bird that belongs to the family Nyctibiidae, found primarily in the forests and tropical regions of Central and South America. Known for their cryptic behavior and remarkable camouflage, potoos are nocturnal birds that are most active during the night, making them elusive and difficult to observe in the wild.</p>
-                        </div>
-                    </div>
-                </a>
-                
+                    </a>
+                </div>
             </div>
         </section>
 

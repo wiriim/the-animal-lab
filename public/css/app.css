@@ -35,7 +35,8 @@
     color: black;
 }
 
-.exotic-wrapper > *:hover{
+.left-animals > *:hover,
+.right-animals > *:hover{
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     border-radius: 30px;
