@@ -78,7 +78,7 @@
         <section class="interraction-section d-flex justify-content-center" style="height: 600px; align-items: center">
             <div class="interraction-wrapper d-flex flex-wrap justify-content-center" style="gap: 40px; height: fit-content; align-items: center; padding: 20px">
                 <div class="interraction-left">
-                    <img src="{{ asset('images/interraction2.png') }}" alt="interraction2" width="100%" height="100%">
+                    <img src="{{ asset('images/interraction-img.jpeg') }}" alt="interraction2" width="100%" height="100%">
                 </div>
                 <div class="interraction-right">
                     <h2>Participate in the Community!</h2>

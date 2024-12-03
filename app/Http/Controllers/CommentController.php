@@ -24,12 +24,12 @@ class CommentController extends Controller
         ]);
         
 
-        return back()->with("success","Comment created");
+        return redirect('/animals/'.$animal->id.'#comment')->with("success","Comment created");
     }
 
     public function destroy(Animal $animal, Comment $comment){
         $comment->delete();
-        return back()->with("success","Comment deleted");
+        return redirect('/animals/'.$animal->id.'#comment')->with("success","Comment deleted");
     }
 
 }

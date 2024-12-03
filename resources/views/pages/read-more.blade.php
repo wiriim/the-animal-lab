@@ -2,58 +2,53 @@
 
 @section('content')
     
-    <div class="container-lg mt-5">
+    <div class="readmore-container container mt-5">
 
-        <section class="detail-section">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{{ asset($animal->image) }}" alt="{{$animal->name}}" width="100%" class="rounded border border-dark border-2" style="max-height: 300px">
+        <div class="readmore-wrapper">
+            <section class="left-readmore">
+                <div class="readmore-title-wrapper">
+                    <h1 class="readmore-title">{{$animal->name}} | TheAnimalLab</h1>
                 </div>
-                <div class="col-md-3 mt-2">
-                    <p><span class="fw-bold">Name: </span> {{$animal->name}}</p>
-                    <p><span class="fw-bold">Family: </span> {{$animal->family}}</p>
-                    <p><span class="fw-bold">Diet: </span> {{$animal->diet}}</p>
-                    <p><span class="fw-bold">Habitat: </span> {{$animal->habitat}}</p>
-                    <p><span class="fw-bold">Predators: </span> {{$animal->predators}}</p>
+                <div class="readmore-content-wrapper mt-4">
+                    <p class="readmore-description">{{$animal->description}}</p>
+                    <div class="readmore-detail">
+                        <h2>{{$animal->name}}</h2>
+                        <div class="detail-seperator"></div>
+                        <img src="{{ asset($animal->image) }}" alt="{{$animal->name}}" width="300" height="200">
+                        <div class="detail-seperator"></div>
+                        <div class="detail-wrapper mt-2" style="padding: 0px">
+                            <div class="detail-left">
+                                <p><strong>Height: </strong>{{$animal->height}} (cm)</p>
+                                <p><strong>Weight: </strong>{{$animal->weight}} (kg)</p>
+                                <p><strong>Color: </strong>{{$animal->color}}</p>
+                                <p><strong>Lifespan: </strong>{{$animal->lifespan}} (years)</p>
+                                <p><strong>Diet: </strong>{{$animal->diet}}</p>
+                                <p><strong>Habitat: </strong>{{$animal->habitat}}</p>
+                                <p><strong>Predators: </strong>{{$animal->predators}}</p>
+                            </div>
+                            <div class="detail-right">
+                                <p><strong>Countries: </strong>{{$animal->countries}}</p>
+                                <p><strong>Avg Speed: </strong>{{$animal->avgspeed}} (km/h)</p>
+                                <p><strong>Top Speed: </strong>{{$animal->topspeed}} (km/h)</p>
+                                <p><strong>Status: </strong>{{$animal->conservationStatus}}</p>
+                                <p><strong>Family: </strong>{{$animal->family}}</p>
+                                <p><strong>Social: </strong>{{$animal->socialStructure}}</p>
+                                <p><strong>Gestation: </strong>{{$animal->gestationPeriod}} (days)</p>
+                            </div>
+                        </div>
+                        
+                    </div>
                     
                 </div>
-                <div class="col-md-3 mt-2">
-                    <p><span class="fw-bold">Countries: </span> {{$animal->countries}}</p>
-                    <p><span class="fw-bold">Conservation Status: </span> {{$animal->conservationStatus}}</p>
-                    <p><span class="fw-bold">Social Structure: </span> {{$animal->socialStructure}}</p>
-                    <p><span class="fw-bold">Color: </span> {{$animal->color}}</p>
-                    <p><span class="fw-bold">Height: </span> {{$animal->height}} (cm)</p>
-                </div>
-                <div class="col-md-3 mt-2">
-                    <p><span class="fw-bold">Weight: </span> {{$animal->weight}} (kg)</p>
-                    <p><span class="fw-bold">Lifespan: </span> {{$animal->lifespan}} (years)</p>
-                    <p><span class="fw-bold">Average Speed: </span> {{$animal->avgspeed}} (km/h)</p>
-                    <p><span class="fw-bold">Top Speed: </span> {{$animal->topspeed}} (km/h)</p>
-                    <p><span class="fw-bold">Gestation Period: </span> {{$animal->gestationPeriod}} (days)</p>
-                </div>
-            </div>
-        </section>
+            </section>
+            
+            <section class="right-readmore">
+                
+            </section>
+        </div>
         
-
-        <section class="description-section">
-            <div class="accordion mt-4 border-dark border rounded" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Article
-                      </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <p class="comment-description">{{$animal->description}}</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="comment-section mt-5">
-            <h1 class="comment-heading">Comments</h1>
+        <section class="comment-section mt-5" id="comment">
+            <h2 class="comment-heading">Comments</h2>
 
             <div class="space mt-5"></div>
             @if (Session::has('success'))
@@ -102,6 +97,7 @@
             @endif
 
             <div class="space mt-5"></div>
+            <!-- Comment form -->
             @if (Auth::check())
                 <form action="{{ route('comment.store', $animal) }}" method="POST">
                     @csrf
@@ -124,7 +120,6 @@
                 
             @endif
         </section>
-
         <div class="space" style="margin-bottom: 150px"></div>
     </div>
 

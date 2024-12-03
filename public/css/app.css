@@ -85,6 +85,78 @@
     margin-top: -210px;
 }
 
+
+/* read more */
+
+.readmore-container{
+    background-color: #FBFBFB;
+    border: 2px solid rgb(235, 227, 227); 
+    border-radius: 3px; 
+    padding: 3rem;
+}
+
+.readmore-content-wrapper{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+
+.readmore-description{
+    flex: 2 1 0;
+    min-width: 320px;
+}
+
+.readmore-detail{
+    align-self: flex-end;
+    flex: 1 1 0;
+    background: #FBFBFB;
+    max-width: fit-content;
+    min-width: 320px;
+    height: fit-content;
+    color: black;
+    padding: 1rem;
+
+    border: 2px solid #3d3d39;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+
+.detail-seperator{
+    width: 100%;
+    height: 2px;
+    background-color: #3d3d39;
+}
+
+.readmore-detail img{
+    height: auto;
+    max-width: 100%;
+}
+
+.detail-wrapper{
+    display: flex;
+    gap: 10px;
+}
+
+.readmore-title-wrapper{
+    width: 100%;
+    position: relative;
+}
+
+.readmore-title::after{
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: rgb(78, 74, 74);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
 .comment-heading{
     display: flex;
     position: relative;
@@ -93,7 +165,7 @@
 .comment-heading::after{
     content: '';
     width: 100%;
-    height: 5px;
+    height: 3px;
     border-radius: 5px;
     background-color: rgb(54, 47, 47);
     display: block;
@@ -106,14 +178,7 @@
     text-align: justify;
 }
 
-.top-section{
-    background-image: url('../images/lion-img.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 0 -150px;
-    height: 45%;
-    width: 100%;
-}
+/* about us */
 
 .top-section-mask{
     width: 100%;
