@@ -118,9 +118,22 @@ aside a{
 }
 
 aside a:hover{
+    background-color: #b8d3df;
+    text-decoration: none;
+    color: black;
+}
+
+aside a i{
+    color: rgb(57, 132, 145);
+    margin-right: 10px;
+}
+
+.hover{
     background-color: #9cc4d5;
     text-decoration: none;
     color: black;
+    padding-left: 20px;
+    padding-right: 15px;
 }
 
 @media (max-width: 900px){

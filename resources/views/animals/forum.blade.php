@@ -10,15 +10,15 @@
     </div>
 
     <div class="container-lg">
-      <h2>View the latest comments!</h2>
+      <h2>View the comments from out community!</h2>
     </div>
     <div class="forum-wrapper container-lg">
       <aside>
         <ul>
-          <a class="{{$filter === 'new' ? 'hover' : ''}}" href="{{ route('forum', ['filter'=>'new']) }}"><li><i class="bi bi-stars"></i> New</li></a>
-          <a href="{{ route('forum', ['filter'=>'old']) }}"><li><i class="bi bi-stars"></i> Old</li></a>
-          <a href="{{ route('forum', ['filter'=>'mostPopular']) }}"><li><i class="bi bi-fire"></i> Popular</li></a>
-          <a href="{{ route('forum', ['filter'=>'leastPopular']) }}"><li><i class="bi bi-hand-thumbs-down-fill"></i> Least Popular</li></a>
+          <a class="{{$filter == 'new' ? 'hover' : ''}}" href="{{ route('forum', ['filter'=>'new']) }}"><li><i class="bi bi-stars {{$filter == 'new' ? 'text-dark': ''}}"></i> New</li></a>
+          <a class="{{$filter == 'old' ? 'hover' : ''}}" href="{{ route('forum', ['filter'=>'old']) }}"><li><i class="bi bi-clock-fill {{$filter == 'old' ? 'text-dark': ''}}"></i> Old</li></a>
+          <a class="{{$filter == 'mostPopular' ? 'hover' : ''}}" href="{{ route('forum', ['filter'=>'mostPopular']) }}"><li><i class="bi bi-fire {{$filter == 'mostPopular' ? 'text-dark': ''}}"></i> Popular</li></a>
+          <a class="{{$filter == 'leastPopular' ? 'hover' : ''}}" href="{{ route('forum', ['filter'=>'leastPopular']) }}"><li><i class="bi bi-hand-thumbs-down-fill {{$filter == 'leastPopular' ? 'text-dark': ''}}"></i> Least Popular</li></a>
           
         </ul>
       </aside>

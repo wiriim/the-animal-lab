@@ -19,14 +19,14 @@
                 @enderror
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
-                  <input name="name" type="name" class="form-control" id="name" aria-describedby="name" placeholder="{{Auth::user()->name}}">
+                  <input name="name" type="name" class="form-control" id="name" aria-describedby="name" value="{{Auth::user()->name}}">
                 </div>
                 @error('name')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control" id="email" placeholder="{{Auth::user()->email}}">
+                    <input name="email" type="email" class="form-control" id="email" value="{{Auth::user()->email}}">
                 </div>
                 @error('email')
                     <div class="alert alert-danger">{{$message}}</div>
