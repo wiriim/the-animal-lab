@@ -15,6 +15,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function likes(){
+        return $this->belongsToMany(Comment::class, 'comment_like')->withTimestamps();
+    }
+
     protected $table = 'users';
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;

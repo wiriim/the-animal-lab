@@ -12,7 +12,7 @@
 <body>
 
     <div class="layout-container d-flex flex-column" style="height: 100vh">
-        <nav>
+        <nav style="position: sticky; top:0; background: white; border-bottom: 1px solid #e3e3e4; z-index: 99999;">
             @include('layouts.navbar')
         </nav>
     
