@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <div class="container-md my-4" style="text-align: center">
+    <div class="container-md my-4 forum-header" style="text-align: center">
         <h1>Explore all types of animals!</h1>
         <p class="lead mt-3">Animals can be categorized into many different categories.</p>
         <p>Social Structure, Family, Habitat, Diet, and many more. Feel free to browse or leave out comments about any animals that caught your attention.</p>

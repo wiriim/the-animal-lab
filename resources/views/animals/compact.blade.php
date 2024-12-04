@@ -2,7 +2,7 @@
 
 @section('content')
     
-  <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
+  <div class="container-lg mt-5 d-flex flex-wrap animals-header" style="justify-content: space-between">
     <section class="format-section mb-3">
         <h3>Display Format: Compact</h3>
         <div class="format-buttons d-flex" style="gap: 10px">
