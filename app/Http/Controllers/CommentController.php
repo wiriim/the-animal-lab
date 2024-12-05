@@ -13,7 +13,7 @@ class CommentController extends Controller
 
         $validation = $request->validate([
             "title" => 'required',
-            'comment'=> 'required',
+            'comment'=> 'required| max:1200',
         ]);
 
         Comment::create([

@@ -43,16 +43,9 @@ class AnimalController extends Controller
         $comments = Comment::where('animal_id', $animal->id)
         ->orderBy('created_at','desc')->paginate(15);
 
-        $recs = [
-            Animal::where('id', rand(1, 194))->get(),
-            Animal::where('id', rand(1, 194))->get(),
-            Animal::where('id', rand(1, 194))->get(),
-        ];
-
         return view('pages.read-more', [
             'animal'=> $animal,
             'comments' => $comments,
-            'recs' => $recs
             ]);
     }
 

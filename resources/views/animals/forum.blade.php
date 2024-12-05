@@ -23,6 +23,21 @@
         </ul>
       </aside>
       <div class="container-lg">
+        @if ($comments->isEmpty())
+          <div class="comment-wrapper mt-5">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="{{ asset('images/stelle.jpeg') }}" alt="stelle-img" width="100px" height="auto">
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <h4>Be the first to comment</h4>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <h5 style="color:grey; text-align:center">Help the community by sharing your thoughts.</h5>
+                </div>
+              </div>
+          </div> 
+        @endif
         @foreach ($comments as $comment)
         <div class="card mb-3 " style="max-width: 100%; border: 0">
             <div class="row g-0"style="border: 2px solid gray; padding: 1rem; border-radius: 10px">
@@ -37,7 +52,7 @@
                   <h5 class="card-title">
                     <img src="{{ asset($comment->user->getPicture()) }}" alt="profile-picture" width="40" height="40"style="border-radius: 50%; border: 2px solid black">
                     {{$comment->user->name}}</h5>
-                  <p class="card-text"><strong>{{$comment->title}}</strong></p>
+                  <p class="card-text"><strong style="font-size: 20px">{{$comment->title}}</strong></p>
                   <p class="card-text">{{$comment->comment}}</p>
 
                   @if (Auth::check())
