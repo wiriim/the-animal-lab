@@ -137,6 +137,7 @@ aside a:hover{
 }
 
 aside a i{
+    font-size: 20px;
     color: rgb(57, 132, 145);
     margin-right: 10px;
 }
