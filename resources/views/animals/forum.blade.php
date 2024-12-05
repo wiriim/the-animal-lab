@@ -9,8 +9,8 @@
         <p>We aim create a community of people where they can comment and share their thoughts about the animals they love. <strong>To find out more about us, click <a href="{{ route('about-us') }}">here</a></strong></p>
     </div>
 
-    <div class="container-lg">
-      <h2>View the comments from out community!</h2>
+    <div class="container-lg mt-5">
+      <h2 class="fw-bold">View the comments from out community!</h2>
     </div>
     <div class="forum-wrapper container-lg">
       <aside>
@@ -55,6 +55,7 @@
                   <p class="card-text"><strong style="font-size: 20px">{{$comment->title}}</strong></p>
                   <p class="card-text">{{$comment->comment}}</p>
 
+                  <!-- check if user is logged in -->
                   @if (Auth::check())
                     @if (Auth::user()->likes()->where('comment_id', $comment->id)->exists())
                       <form action="{{ route('dislike', $comment) }}" method="POST">
@@ -70,7 +71,7 @@
                       </form>
                     @endif
                   @else
-                      <a href="{{ route('login') }}" style="text-decoration: none"><i class="bi bi-heart-fill text-danger"></i></button></a>
+                      <a href="{{ route('login') }}" style="text-decoration: none"><i class="bi bi-heart"></i></button></a>
                       <span>{{$comment->likes()->count()}}</span>
                   @endif
                   
