@@ -2,7 +2,8 @@
 
 @section('content')
     
-    <div class="container-lg mt-5">
+    <div class="container-lg mt-5 register-wrapper">
+      <h1>Register</h1>
         <form action="{{ route('register') }}" method="POST">
           @csrf
           <div class="mb-3">

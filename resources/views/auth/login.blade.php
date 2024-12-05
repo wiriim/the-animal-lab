@@ -2,7 +2,8 @@
 
 @section('content')
     
-    <div class="container-lg mt-5">
+    <div class="container-lg mt-5 login-wrapper">
+      <h1>Login</h1>
       @if(Session::has('success'))
         <p class="text-success">{{Session::get('success')}}</p>
       @endif
