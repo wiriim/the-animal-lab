@@ -7,7 +7,9 @@ use App\Models\Comment;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
@@ -95,8 +97,21 @@ class AnimalController extends Controller
             'image' => ['required', 'mimes:jpg'],
             'description' => ['required']
         ]);
-        $fileName = time().'.'.$request->file('image')->getClientOriginalExtension();
-        $request->file('image')->move('images/animals', $fileName);
+
+        
+        $fileName = 'animals/' . $validate['name'] . '.' .$request->file('image')->getClientOriginalExtension();
+        $filePath = str_replace("'", "_", $fileName);
+        
+        // dd($request->file('image'), $request, $fileName);
+
+        Storage::disk('google')->put($fileName, File::get($request->file('image')), 'public');
+
+        $downloadableUrl = Storage::cloud()->url($filePath);
+
+        if (preg_match('/id=([a-zA-Z0-9_-]+)/', $downloadableUrl, $matches)) {
+            $fileId = $matches[1];
+            $url = 'https://drive.google.com/thumbnail?id=' . $fileId . '&sz=w1000';
+        }
 
         Animal::create([
             'name' => $validate['name'],
@@ -114,7 +129,7 @@ class AnimalController extends Controller
             'family' => $validate['family'],
             'gestationPeriod' => $validate['gestationPeriod'],
             'socialStructure' => $validate['socialStructure'],
-            'image' => 'images/animals/'.$fileName,
+            'image' => $url,
             'description' => $validate['description']
         ]);
 
@@ -128,7 +143,9 @@ class AnimalController extends Controller
             abort(403);
         }
 
-        unlink(public_path($animal->image));
+        $filePath = '/animals/' . str_replace("'", "_", $animal->name) . '.jpg';
+        Storage::cloud()->delete($filePath);
+        // unlink(public_path($animal->image));
         $animal->delete();
 
         return back()->with('deleted',true);
