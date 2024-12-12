@@ -80,7 +80,7 @@
                             <div class="col-12 fw-bolder d-flex" style="position: relative; align-items: center; gap: 5px; margin-top: 10px;">
                                 <img src="{{ asset($comment->user->getPicture()) }}" alt="profile-picture" width="30" height="30"style="border-radius: 50%; border: 2px solid black">
                                 {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}}
-                                @if (Auth::check() && Auth::user()->id == $comment->user_id)
+                                @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->id === $comment->user_id))
                                     <a href="{{ route('comment.destroy', ['animal'=>$animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4" style="position: absolute; right: 15px; top: -5px"></i></a>
                                 @endif
                             </div>

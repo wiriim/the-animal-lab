@@ -78,6 +78,14 @@
                   
                   
                   <p class="card-text"><small class="text-body-secondary">Created at {{$comment->created_at->format('d/m/Y')}}</small></p>
+
+                  @if (Auth::check() && Auth::user()->role === 'admin')
+                      <form action="{{ route('comment.destroy', ['animal'=>$comment->animal, 'comment'=>$comment]) }}" method="POST" style="display:inline">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                  @endif
                 </div>
               </div>
             </div>

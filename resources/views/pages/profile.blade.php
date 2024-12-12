@@ -28,7 +28,9 @@
                             <div class="row">
                                 <div class="col-12 fw-bolder mt-1 d-flex" style="position: relative">
                                     {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}}
-                                    <a href="{{ route('comment.destroy', ['animal'=> $comment->animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4" style="position: absolute; right: 15px;"></i></a>
+                                    @if (Auth::user()->role === 'admin' || Auth::user()->id === $comment->user_id)
+                                        <a href="{{ route('comment.destroy', ['animal'=> $comment->animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4" style="position: absolute; right: 15px;"></i></a>
+                                    @endif
                                 </div>
                                 <a href="{{ route('read-more', $comment->animal) }}"><em>{{$comment->animal->name}}</em></a>
                                 <div class="col-12 mt-2 lead mb-2 fw-bold">{{$comment->title}}</div>

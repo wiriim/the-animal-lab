@@ -6,6 +6,7 @@ use App\Models\Animal;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -28,8 +29,12 @@ class CommentController extends Controller
     }
 
     public function destroy(Animal $animal, Comment $comment){
-        $comment->delete();
-        return redirect('/animals/'.$animal->id.'#comment')->with("success","Comment deleted");
+        $user = Auth::user();
+        if (Gate::allows('isAdmin', $user) || Auth::user()->id === $comment->user_id) {
+            $comment->delete();
+            return redirect('/animals/'.$animal->id.'#comment')->with("success", "Comment deleted");
+        }
+        return redirect('/animals/'.$animal->id.'#comment')->with("error", "Unauthorized action");
     }
 
 }
