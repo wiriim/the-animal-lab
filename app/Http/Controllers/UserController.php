@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -66,18 +67,19 @@ class UserController extends Controller
             'name' => $validate['name'],
             'email'=> $validate['email'],
             'password'=> $validate['password'],
+            'role'=> 'user'
         ]);
         return redirect()->route('login')->with('success','Register Successful');
     }
 
     public function edit(Request $request){
-        
+
         $validate = $request->validate([
             'name' => 'required',
             'picture' => 'image|nullable',
             'email' => 'required|email',
         ]);
-        
+
         $user = Auth::user();
         if ($request->has('picture')){
             $path = $request->file('picture')->store('pictures', 'public');
@@ -87,13 +89,24 @@ class UserController extends Controller
             }
             $user->picture = $validate['picture'];
         }
-        
+
         $user->name = $validate['name'];
         $user->email = $validate['email'];
         $user->save();
-        
+
 
         return redirect()->route('profile');
     }
 
+    public function goToAddAnimal(){
+        $user = Auth::user();
+
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        return view('admin.add-animal');
+
+
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use App\Models\Comment;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -22,7 +22,7 @@ class CommentController extends Controller
             "user_id" => Auth::user()->id,
             "animal_id" => $animal->id,
         ]);
-        
+
 
         return redirect('/animals/'.$animal->id.'#comment')->with("success","Comment created");
     }

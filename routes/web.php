@@ -50,3 +50,5 @@ Route::get('/about-us', function(){
     return view('pages.about-us');
 })->name('about-us');
 
+Route::get('/admin/animal/add', [UserController::class,'goToAddAnimal'])->name('add.animal');
+Route::post('/admin/animal/added', [AnimalController::class,'addAnimal'])->name('animal.added');

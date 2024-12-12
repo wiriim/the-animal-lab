@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('height'); // cm
             $table->string('weight'); // kg
             $table->string('color');
-            $table->string('lifespan');
+            $table->string('lifespan'); // years
             $table->string('diet');
             $table->string('habitat');
             $table->string('predators');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('countries');
             $table->string('conservationStatus');
             $table->string('family');
-            $table->string('gestationPeriod');
+            $table->string('gestationPeriod'); //days
             $table->string('socialStructure');
             $table->string('image');
             $table->text('description');

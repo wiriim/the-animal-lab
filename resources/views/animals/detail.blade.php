@@ -3,7 +3,7 @@
 
 
 @section('content')
-    
+
     <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
         <section class="format-section mb-3">
             <h3>Display Format: Detail</h3>
@@ -16,10 +16,14 @@
                   @csrf
                   <button type="submit" class="btn btn-primary">Compact View</button>
                 </form>
+                @if(Auth::check())
+                    @if (Auth::user()->role === 'admin')
+                        <a href="{{ route('add.animal') }}" class="btn btn-primary">Add New Animal</a>
+                    @endif
+                @endif
             </div>
-            
         </section>
-        
+
         <section class="search-section">
             <form action="{{ route('searchAnimal', ['format' => 'detail']) }}" method="GET">
                 @csrf
@@ -39,7 +43,7 @@
                 </div>
             @endif
         </div>
-        
+
         <div class="row ms-3">
             @foreach ($animals as $animal)
                 <div class="container-fluid border rounded border-dark d-flex row mb-3 p-3">
@@ -54,7 +58,7 @@
                         <a href="{{ route('read-more', $animal) }}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
-                
+
             @endforeach
         </div>
         <div class="mt-5"></div>

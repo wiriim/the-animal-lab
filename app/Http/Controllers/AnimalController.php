@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Comment;
 use App\Models\Like;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AnimalController extends Controller
 {
@@ -59,7 +60,7 @@ class AnimalController extends Controller
         }else if ($filter == 'leastPopular'){
             $comments = Comment::withCount('likes')->orderBy('likes_count', 'asc')->paginate(15);
         }
-        
+
 
         // $comments = Comment::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
         return view('animals.forum', [
@@ -67,5 +68,56 @@ class AnimalController extends Controller
             'filter' => $filter
         ]);
     }
-    
+
+    public function addAnimal(Request $request){
+        $user = Auth::user();
+
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        $validate = $request->validate([
+            'name' => ['required', 'unique:animals,name' ],
+            'height' => ['required'],
+            'weight' => ['required'],
+            'color' => ['required'],
+            'lifespan' => ['required'],
+            'diet' => ['required'],
+            'habitat' => ['required'],
+            'predators' => ['required'],
+            'avgspeed' => ['required'],
+            'topspeed' => ['required'],
+            'countries' => ['required'],
+            'conservationStatus' => ['required'],
+            'family' => ['required'],
+            'gestationPeriod' => ['required'],
+            'socialStructure' => ['required'],
+            'image' => ['required', 'mimes:jpg'],
+            'description' => ['required']
+        ]);
+        $fileName = time().'.'.$request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move('images/animals', $fileName);
+
+        Animal::create([
+            'name' => $validate['name'],
+            'height' => $validate['height'],
+            'weight' => $validate['weight'],
+            'color' => $validate['color'],
+            'lifespan' => $validate['lifespan'],
+            'diet' => $validate['diet'],
+            'habitat' => $validate['habitat'],
+            'predators' => $validate['predators'],
+            'avgspeed' => $validate['avgspeed'],
+            'topspeed' => $validate['topspeed'],
+            'countries' => $validate['countries'],
+            'conservationStatus' => $validate['conservationStatus'],
+            'family' => $validate['family'],
+            'gestationPeriod' => $validate['gestationPeriod'],
+            'socialStructure' => $validate['socialStructure'],
+            'image' => 'images/animals/'.$fileName,
+            'description' => $validate['description']
+        ]);
+
+        return redirect()->route('add.animal')->with('success', true);
+    }
 }
