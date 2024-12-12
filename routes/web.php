@@ -55,3 +55,4 @@ Route::get('/about-us', function(){
 Route::get('/admin/animal/add', [UserController::class,'goToAddAnimal'])->name('add.animal');
 Route::post('/admin/animal/added', [AnimalController::class,'addAnimal'])->name('animal.added');
 
+Route::delete( '/admin/delete/{animal}', [AnimalController::class,'delete'])->name('animal.delete');

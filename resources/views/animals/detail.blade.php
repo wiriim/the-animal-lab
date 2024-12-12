@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
-
-
 @section('content')
+@session('deleted')
+    <div class="alert alert-success">
+        Animal Succesfully Deleted
+    </div>
+@endsession
 
     <div class="container-lg mt-5 d-flex flex-wrap" style="justify-content: space-between">
         <section class="format-section mb-3">
@@ -56,6 +59,16 @@
                         <p class="lead" style="margin-top: -10px">Diet: {{$animal->diet}}</p>
                         <p>{{{Str::limit($animal->description, 400)}}}</p>
                         <a href="{{ route('read-more', $animal) }}" class="btn btn-primary">Read More</a>
+                        @if(Auth::check())
+                            @if (Auth::user()->role === 'admin')
+                                <form action="{{ route('animal.delete', ['animal'=>$animal->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <br>
+                                    <input class="btn btn-danger" type="submit" value="Delete">
+                                </form>
+                            @endif
+                        @endif
                     </div>
                 </div>
 

@@ -120,4 +120,17 @@ class AnimalController extends Controller
 
         return redirect()->route('add.animal')->with('success', true);
     }
+
+    public function delete(Animal $animal){
+        $user = Auth::user();
+
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        unlink(public_path($animal->image));
+        $animal->delete();
+
+        return back()->with('deleted',true);
+    }
 }
