@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Animal;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalSeeder extends Seeder
 {
@@ -18,7 +20,18 @@ class AnimalSeeder extends Seeder
         $secondLine = true;
         while(($data = fgetcsv($csfFile)) !== false) {
             if(!$firstLine && !$secondLine) {
-                $imgLoc = 'images/animals/'.$data[0].'.jpg';
+                $filepath = '/animals/'. str_replace("'", "_", $data[0]) .'.jpg';
+                $filename = 'animals/'. $data[0] . '.jpg';
+                $path = 'public/images/animals/' . $data[0] . '.jpg';
+
+                Storage::disk('google')->put($filename, File::get($path), 'public');
+                $downloadableUrl = Storage::cloud()->url($filepath);
+
+                if (preg_match('/\/file\/d\/([a-zA-Z0-9_-]+)/', $downloadableUrl, $matches)) {
+                    $fileId = $matches[1];
+                    $url = 'https://drive.google.com/thumbnail?id=' . $fileId . '&sz=w1000';
+                }
+                
                 Animal::create([
                     'name' => $data[0],
                     'height' => $data[1],
@@ -35,7 +48,7 @@ class AnimalSeeder extends Seeder
                     'family' => $data[11],
                     'gestationPeriod' => $data[12],
                     'socialStructure' => $data[14],
-                    'image' => $imgLoc,
+                    'image' => $url,
                     'description' => $data[16],
                 ]);
             }
