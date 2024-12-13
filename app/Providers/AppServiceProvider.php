@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isAdmin', function (User $user) {
             return $user->role === 'admin';
         });
+        
+        // Mail::alwaysTo('medy.gunawan@binus.ac.id');
     }
 }

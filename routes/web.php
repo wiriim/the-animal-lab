@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,3 +57,9 @@ Route::get('/admin/animal/add', [UserController::class,'goToAddAnimal'])->name('
 Route::post('/admin/animal/added', [AnimalController::class,'addAnimal'])->name('animal.added');
 
 Route::delete( '/admin/delete/{animal}', [AnimalController::class,'delete'])->name('animal.delete');
+
+Route::get('/feedback', function() {
+    return view('email.form');
+})->name('contact-us.form');
+
+Route::post('/feedback/send', [MailController::class, 'sendMail'])->name('contact-us.send');
