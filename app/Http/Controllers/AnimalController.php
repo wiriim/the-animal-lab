@@ -62,7 +62,8 @@ class AnimalController extends Controller
         } else if ($filter === 'leastPopular') {
             $comments = Comment::whereNull('parent_id')->withCount('likes')->orderBy('likes_count', 'asc')->paginate(15);
         }
-
+        
+        // $comments = Comment::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
         return view('animals.forum', [
             'comments' => $comments,
             'filter' => $filter
