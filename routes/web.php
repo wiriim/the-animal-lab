@@ -48,6 +48,10 @@ Route::get('/animals/{animal}/{comment}', [CommentController::class,'destroy'])-
 
 Route::delete('/animals/{animal}/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
+Route::post('/comments/{comment}/reply', [CommentController::class, 'reply'])->name('comment.reply');
+
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
+
 Route::get('/about-us', function(){
     return view('pages.about-us');
 })->name('about-us');

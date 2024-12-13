@@ -44,7 +44,7 @@ class AnimalController extends Controller
 
     public function readMore(Animal $animal){
         $comments = Comment::where('animal_id', $animal->id)
-        ->orderBy('created_at','desc')->paginate(15);
+        ->whereNull('parent_id')->orderBy('created_at','desc')->paginate(15);
 
         return view('pages.read-more', [
             'animal'=> $animal,
@@ -53,20 +53,18 @@ class AnimalController extends Controller
     }
 
     public function forum(String $filter){
-        if ($filter === 'new'){
-            $comments = Comment::orderBy('created_at', 'desc')->paginate(15);
-        }else if ($filter == 'old'){
-            $comments = Comment::orderBy('created_at', 'asc')->paginate(15);
-        }else if ($filter == 'mostPopular'){
-            $comments = Comment::withCount('likes')->orderBy('likes_count', 'desc')->paginate(15);
-        }else if ($filter == 'leastPopular'){
-            $comments = Comment::withCount('likes')->orderBy('likes_count', 'asc')->paginate(15);
+        if ($filter === 'new') {
+            $comments = Comment::whereNull('parent_id')->orderBy('created_at', 'desc')->paginate(15);
+        } else if ($filter === 'old') {
+            $comments = Comment::whereNull('parent_id')->orderBy('created_at', 'asc')->paginate(15);
+        } else if ($filter === 'mostPopular') {
+            $comments = Comment::whereNull('parent_id')->withCount('likes')->orderBy('likes_count', 'desc')->paginate(15);
+        } else if ($filter === 'leastPopular') {
+            $comments = Comment::whereNull('parent_id')->withCount('likes')->orderBy('likes_count', 'asc')->paginate(15);
         }
 
-
-        // $comments = Comment::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
         return view('animals.forum', [
-            'comments'=> $comments,
+            'comments' => $comments,
             'filter' => $filter
         ]);
     }
