@@ -17,6 +17,10 @@
                 Our mission is to provide an engaging online platform that showcases the fascinating variety of animal life, highlighting their unique characteristics and natural habitats. Through this platform, we strive to build a global community where individuals can share their thoughts, stories, and experiences about animals, creating meaningful connections with like-minded enthusiasts. We are committed to fostering a love for animals, raising awareness about their importance, and encouraging actions that contribute to their protection and preservation.
             </p>
         </div>
+
+        <div class="contact-us">
+            <a href="{{ route('contact-us.form') }}" class="btn btn-dark">Contact Us</a>
+        </div>
         
     </section>
     
