@@ -62,7 +62,7 @@ class AnimalController extends Controller
         } else if ($filter === 'leastPopular') {
             $comments = Comment::whereNull('parent_id')->withCount('likes')->orderBy('likes_count', 'asc')->paginate(15);
         }
-        
+
         // $comments = Comment::withCount('likes')->orderBy('likes_count', 'desc')->paginate(10);
         return view('animals.forum', [
             'comments' => $comments,
@@ -97,10 +97,10 @@ class AnimalController extends Controller
             'description' => ['required']
         ]);
 
-        
+
         $fileName = 'animals/' . $validate['name'] . '.' .$request->file('image')->getClientOriginalExtension();
         $filePath = str_replace("'", "_", $fileName);
-        
+
         // dd($request->file('image'), $request, $fileName);
 
         Storage::disk('google')->put($fileName, File::get($request->file('image')), 'public');
@@ -148,5 +148,82 @@ class AnimalController extends Controller
         $animal->delete();
 
         return back()->with('deleted',true);
+    }
+
+    public function updatePage(Animal $animal){
+        $user = Auth::user();
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        return view('admin.update-animal' , ['animal'=> $animal]);
+    }
+
+    public function update(Request $request, Animal $animal){
+        $user = Auth::user();
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        $validate = $request->validate([
+            'name' => 'required|unique:animals,name,'.$animal->id,
+            'height' => 'required',
+            'weight' => 'required',
+            'color' => 'required',
+            'lifespan' => 'required',
+            'diet' => 'required',
+            'habitat' => 'required',
+            'predators' => 'required',
+            'avgspeed' => 'required',
+            'topspeed' => 'required',
+            'countries' => 'required',
+            'conservationStatus' => 'required',
+            'family' => 'required',
+            'gestationPeriod' => 'required',
+            'socialStructure' => 'required',
+            'image' => 'nullable|mimes:jpg',
+            'description' => 'required'
+        ]);
+
+        if($request->has('image')){
+            $filePath = '/animals/' . str_replace("'", "_", $animal->name) . '.jpg';
+            Storage::cloud()->delete($filePath);
+
+            $fileName = 'animals/' . $validate['name'] . '.' .$request->file('image')->getClientOriginalExtension();
+            $filePath = str_replace("'", "_", $fileName);
+
+            // dd($request->file('image'), $request, $fileName);
+
+            Storage::disk('google')->put($fileName, File::get($request->file('image')), 'public');
+
+            $downloadableUrl = Storage::cloud()->url($filePath);
+
+            if (preg_match('/id=([a-zA-Z0-9_-]+)/', $downloadableUrl, $matches)) {
+                $fileId = $matches[1];
+                $url = 'https://drive.google.com/thumbnail?id=' . $fileId . '&sz=w1000';
+            }
+
+            $animal->image = $url;
+        }
+
+        $animal->name = $validate['name'];
+        $animal->height = $validate['height'];
+        $animal->weight = $validate['weight'];
+        $animal->color = $validate['color'];
+        $animal->lifespan = $validate['lifespan'];
+        $animal->diet = $validate['diet'];
+        $animal->habitat = $validate['habitat'];
+        $animal->predators = $validate['predators'];
+        $animal->avgspeed = $validate['avgspeed'];
+        $animal->topspeed = $validate['topspeed'];
+        $animal->countries = $validate['countries'];
+        $animal->conservationStatus = $validate['conservationStatus'];
+        $animal->family = $validate['family'];
+        $animal->gestationPeriod = $validate['gestationPeriod'];
+        $animal->socialStructure = $validate['socialStructure'];
+        $animal->description = $validate['description'];
+        $animal->save();
+
+        return redirect()->route('read-more', $animal);
     }
 }

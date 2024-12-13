@@ -106,7 +106,5 @@ class UserController extends Controller
         }
 
         return view('admin.add-animal');
-
-
     }
 }
