@@ -30,7 +30,7 @@ class CommentController extends Controller
 
     public function destroy(Animal $animal, Comment $comment){
         $user = Auth::user();
-        if (Gate::allows('isAdmin', $user) || $user->id === $comment->user_id || $user->role === 'admin') {
+        if (Gate::allows('isAdmin', $user) || $user->id === $comment->user_id) {
             $comment->delete();
             return redirect()->back()->with("success", "Comment deleted");
         }

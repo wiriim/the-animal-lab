@@ -81,7 +81,11 @@
                                 <img src="{{ asset($comment->user->getPicture()) }}" alt="profile-picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black">
                                 {{ $comment->user->name }} • {{ $comment->created_at->format('d/m/Y') }}
                                 @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->id === $comment->user_id))
-                                    <a href="{{ route('comment.destroy', ['animal'=>$animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4"></i></a>
+                                    <form action="{{ route('comment.destroy', ['animal' => $animal, 'comment' => $comment]) }}" method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    </form>
                                 @endif
                             </div>
                             <div class="col-12 mt-3 lead mb-3 fw-bold">{{ $comment->title }}</div>
@@ -102,7 +106,7 @@
                                                 
                                                 <!-- Show delete button only for Admin and the user who made the reply -->
                                                 @if (Auth::check() && (Auth::user()->id === $reply->user_id || Auth::user()->role === 'admin'))
-                                                    <form action="{{ route('comment.delete', $comment) }}" method="POST">
+                                                    <form action="{{ route('comment.delete', $reply) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Delete</button>
