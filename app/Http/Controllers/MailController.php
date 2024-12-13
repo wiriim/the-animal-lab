@@ -15,7 +15,7 @@ class MailController extends Controller
 
     public function sendMail(Request $request) {
         $validation = $request->validate([
-            'subject' => 'required|in:Feedback, Help, Animal Suggestion',
+            'subject' => 'required|in:Feedback,Help,Animal Suggestion',
             'description' => 'required|max:1200',
             'attachment.*' => 'mimes:jpg,jpeg,png,pdf',
             'attachment' => ['bail', new AttachmentSize(5)],
@@ -37,7 +37,7 @@ class MailController extends Controller
             ];
         }
         
-        Mail::to('medy.gunawan@binus.ac.id')->send(new UserMail(Auth::user()->email, $data));
+        Mail::to('medygunawan32@gmail.com')->send(new UserMail(Auth::user()->email, $data));
         
         return back()->with('success', true);
     }

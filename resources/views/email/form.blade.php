@@ -5,7 +5,7 @@
         <div class="space mt-5"></div>
 
         @session('success')
-            <div class=" alert-success">
+            <div class="alert-success">
                 Mail Sent
             </div>
         @endsession

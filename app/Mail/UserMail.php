@@ -44,8 +44,8 @@ class UserMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'email.message',
-            with: ['message' => $this->formData['description']],
+            text: 'email.message',
+            with: ['description' => $this->formData['description']],
         );
     }
 
