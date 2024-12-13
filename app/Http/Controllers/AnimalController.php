@@ -93,7 +93,7 @@ class AnimalController extends Controller
             'family' => ['required'],
             'gestationPeriod' => ['required'],
             'socialStructure' => ['required'],
-            'image' => ['required', 'mimes:jpg'],
+            'image' => ['required', 'mimes:jpg', 'max:5120'],
             'description' => ['required']
         ]);
 
@@ -181,7 +181,7 @@ class AnimalController extends Controller
             'family' => 'required',
             'gestationPeriod' => 'required',
             'socialStructure' => 'required',
-            'image' => 'nullable|mimes:jpg',
+            'image' => 'nullable|mimes:jpg|max:5120',
             'description' => 'required'
         ]);
 
