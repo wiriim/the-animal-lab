@@ -60,3 +60,5 @@ Route::get('/admin/animal/add', [UserController::class,'goToAddAnimal'])->name('
 Route::post('/admin/animal/added', [AnimalController::class,'addAnimal'])->name('animal.added');
 
 Route::delete( '/admin/delete/{animal}', [AnimalController::class,'delete'])->name('animal.delete');
+Route::get('/admin/update/{animal}', [AnimalController::class,'updatePage'])->name('animal.updatePage');
+Route::put('/admin/updated/{animal}', [AnimalController::class,'update'])->name( 'animal.updated');

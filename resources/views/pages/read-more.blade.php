@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="readmore-container container mt-5">
 
         <div class="readmore-wrapper">
             <section class="left-readmore">
-                <div class="readmore-title-wrapper">
-                    <h1 class="readmore-title">{{$animal->name}} | TheAnimalLab</h1>
+                <div class="readmore-title-wrapper d-flex">
+                    <h1 class="readmore-title flex-fill">{{$animal->name}} | TheAnimalLab</h1>
+                    @if(Auth::check())
+                        @if (Auth::user()->role === 'admin')
+                            <a href="{{ route('animal.updatePage', $animal) }}" class="btn btn-outline-primary h-100">Update Animal Data</a>
+                        @endif
+                    @endif
                 </div>
                 <div class="readmore-content-wrapper mt-4">
                     <p class="readmore-description">{{$animal->description}}</p>
@@ -36,17 +41,17 @@
                                 <p><strong>Gestation: </strong>{{$animal->gestationPeriod}} (days)</p>
                             </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </section>
-            
+
             <section class="right-readmore">
-                
+
             </section>
         </div>
-        
+
+
+
         <section class="comment-section mt-5" id="comment">
             <h2 class="comment-heading">Comments</h2>
 
@@ -103,7 +108,7 @@
                                             <div class="mb-2">
                                                 <strong>{{ $reply->user->name }}</strong> • {{ $reply->created_at->format('d/m/Y') }}
                                                 <p>{{ $reply->comment }}</p>
-                                                
+
                                                 <!-- Show delete button only for Admin and the user who made the reply -->
                                                 @if (Auth::check() && (Auth::user()->id === $reply->user_id || Auth::user()->role === 'admin'))
                                                     <form action="{{ route('comment.delete', $reply) }}" method="POST">
@@ -163,7 +168,7 @@
                     @enderror
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                
+
             @endif
         </section>
         <div class="space" style="margin-bottom: 150px"></div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="home-container d-flex flex-column">
         <section class="hero-section d-flex justify-content-center" style="min-height: 420px">
             <div class="hero-wrapper mt-1 d-flex flex-wrap-reverse justify-content-center p-4" style="column-gap: 40px; row-gap: 30px;align-items: center">
@@ -25,7 +25,7 @@
                     <a href="{{ route('read-more', ['animal'=>'7']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
-                                <img src="{{ asset('images/animals/Amazon Rainforest Frog.jpg') }}" alt="Amazon Rainforest Frog" width="100%">
+                                <img src="{{ asset('https://drive.google.com/thumbnail?id=1lsrl7vw90csBXwZEfH9c4WkqDtrZzU4i&sz=w1000') }}" alt="Amazon Rainforest Frog" width="100%">
                             </div>
                             <div class="text ms-2">
                                 <p class="lead fw-bold mt-2">Amazon Rainforest Frog</p>
@@ -33,11 +33,11 @@
                             </div>
                         </div>
                     </a>
-                    
+
                     <a href="{{ route('read-more', ['animal'=>'98']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
-                                <img src="{{ asset('images/animals/Komodo Dragon.jpg') }}" alt="Komodo Dragon" width="100%">
+                                <img src="{{ asset('https://drive.google.com/thumbnail?id=1_A3fKIjMWo1zVPaySp88CcQ3fM9-bYDU&sz=w1000') }}" alt="Komodo Dragon" width="100%">
                             </div>
                             <div class="text ms-2">
                                 <p class="lead fw-bold mt-2">Komodo Dragon</p>
@@ -46,12 +46,12 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="right-animals d-flex flex-wrap justify-content-center" style="gap: 2rem">
                     <a href="{{ route('read-more', ['animal'=>'170']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
-                                <img src="{{ asset('images/animals/Tufted Puffin.jpg') }}" alt="Tufted Puffin" width="100%">
+                                <img src="{{ asset('https://drive.google.com/thumbnail?id=1Nc7YLsSlo8m9osigDNe9odPUZZqxTChk&sz=w1000') }}" alt="Tufted Puffin" width="100%">
                             </div>
                             <div class="text ms-2">
                                 <p class="lead fw-bold mt-2">Tufted Puffin</p>
@@ -59,11 +59,11 @@
                             </div>
                         </div>
                     </a>
-                    
+
                     <a href="{{ route('read-more', ['animal'=>'125']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
-                                <img src="{{ asset('images/animals/Potoo.jpg') }}" alt="Potoo" width="100%">
+                                <img src="{{ asset('https://drive.google.com/thumbnail?id=1TPp7ROpKhngytlGYjd1tQDohIuX-fNP9&sz=w1000') }}" alt="Potoo" width="100%">
                             </div>
                             <div class="text ms-2">
                                 <p class="lead fw-bold mt-2">Potoo</p>
@@ -94,7 +94,7 @@
         </section>
 
     </div>
-    
+
 
 @endsection
 
