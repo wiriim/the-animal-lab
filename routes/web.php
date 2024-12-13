@@ -49,17 +49,26 @@ Route::get('/animals/{animal}/{comment}', [CommentController::class,'destroy'])-
 
 Route::delete('/animals/{animal}/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
+Route::post('/comments/{comment}/reply', [CommentController::class, 'reply'])->name('comment.reply');
+
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
+
 Route::get('/about-us', function(){
     return view('pages.about-us');
 })->name('about-us');
 
 Route::get('/admin/animal/add', [UserController::class,'goToAddAnimal'])->name('add.animal');
+
 Route::post('/admin/animal/added', [AnimalController::class,'addAnimal'])->name('animal.added');
 
 Route::delete( '/admin/delete/{animal}', [AnimalController::class,'delete'])->name('animal.delete');
 
-Route::get('/feedback', function() {
+Route::get('/contact-us', function() {
     return view('email.form');
 })->name('contact-us.form');
 
-Route::post('/feedback/send', [MailController::class, 'sendMail'])->name('contact-us.send');
+Route::post('/contact-us/send', [MailController::class, 'sendMail'])->name('contact-us.send');
+
+Route::get('/admin/update/{animal}', [AnimalController::class,'updatePage'])->name('animal.updatePage');
+
+Route::put('/admin/updated/{animal}', [AnimalController::class,'update'])->name( 'animal.updated');

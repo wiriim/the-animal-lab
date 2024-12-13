@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="home-container d-flex flex-column">
         <section class="hero-section d-flex justify-content-center" style="min-height: 420px">
             <div class="hero-wrapper mt-1 d-flex flex-wrap-reverse justify-content-center p-4" style="column-gap: 40px; row-gap: 30px;align-items: center">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </a>
-                    
+
                     <a href="{{ route('read-more', ['animal'=>'98']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
@@ -46,7 +46,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="right-animals d-flex flex-wrap justify-content-center" style="gap: 2rem">
                     <a href="{{ route('read-more', ['animal'=>'170']) }}" style="text-decoration: none;">
                         <div class="cards">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </a>
-                    
+
                     <a href="{{ route('read-more', ['animal'=>'125']) }}" style="text-decoration: none;">
                         <div class="cards">
                             <div class="image">
@@ -94,7 +94,7 @@
         </section>
 
     </div>
-    
+
 
 @endsection
 

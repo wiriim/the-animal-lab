@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="readmore-container container mt-5">
 
         <div class="readmore-wrapper">
             <section class="left-readmore">
-                <div class="readmore-title-wrapper">
-                    <h1 class="readmore-title">{{$animal->name}} | TheAnimalLab</h1>
+                <div class="readmore-title-wrapper d-flex">
+                    <h1 class="readmore-title flex-fill">{{$animal->name}} | TheAnimalLab</h1>
+                    @if(Auth::check())
+                        @if (Auth::user()->role === 'admin')
+                            <a href="{{ route('animal.updatePage', $animal) }}" class="btn btn-outline-primary h-100">Update Animal Data</a>
+                        @endif
+                    @endif
                 </div>
                 <div class="readmore-content-wrapper mt-4">
                     <p class="readmore-description">{{$animal->description}}</p>
@@ -36,17 +41,17 @@
                                 <p><strong>Gestation: </strong>{{$animal->gestationPeriod}} (days)</p>
                             </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </section>
-            
+
             <section class="right-readmore">
-                
+
             </section>
         </div>
-        
+
+
+
         <section class="comment-section mt-5" id="comment">
             <h2 class="comment-heading">Comments</h2>
 
@@ -77,15 +82,61 @@
                 @foreach ($comments as $comment)
                     <div class="container-lg mb-3 border-dark border rounded">
                         <div class="row">
-                            <div class="col-12 fw-bolder d-flex" style="position: relative; align-items: center; gap: 5px; margin-top: 10px;">
-                                <img src="{{ asset($comment->user->getPicture()) }}" alt="profile-picture" width="30" height="30"style="border-radius: 50%; border: 2px solid black">
-                                {{$comment->user->name}} • {{$comment->created_at->format('d/m/Y')}}
+                            <div class="col-12 fw-bolder d-flex" style="align-items: center; gap: 5px; margin-top: 10px;">
+                                <img src="{{ asset($comment->user->getPicture()) }}" alt="profile-picture" width="30" height="30" style="border-radius: 50%; border: 2px solid black">
+                                {{ $comment->user->name }} • {{ $comment->created_at->format('d/m/Y') }}
                                 @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->id === $comment->user_id))
-                                    <a href="{{ route('comment.destroy', ['animal'=>$animal, 'comment'=>$comment]) }}" class="ms-auto"><i class="bi bi-trash text-danger fs-4" style="position: absolute; right: 15px; top: -5px"></i></a>
+                                    <form action="{{ route('comment.destroy', ['animal' => $animal, 'comment' => $comment]) }}" method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    </form>
                                 @endif
                             </div>
-                            <div class="col-12 mt-3 lead mb-3 fw-bold">{{$comment->title}}</div>
-                            <div class="col-12 mb-3">{{$comment->comment}}</div>
+                            <div class="col-12 mt-3 lead mb-3 fw-bold">{{ $comment->title }}</div>
+                            <div class="col-12 mb-3">{{ $comment->comment }}</div>
+
+                            <!-- Reply Section -->
+                            <div class="col-12">
+                                <button class="btn btn-link text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#replies-{{ $comment->id }}" aria-expanded="false" aria-controls="replies-{{ $comment->id }}">
+                                    View Replies ({{ $comment->replies->count() }})
+                                </button>
+
+                                <div class="collapse" id="replies-{{ $comment->id }}">
+                                    <div class="card card-body">
+                                        @foreach ($comment->replies as $reply)
+                                            <div class="mb-2">
+                                                <strong>{{ $reply->user->name }}</strong> • {{ $reply->created_at->format('d/m/Y') }}
+                                                <p>{{ $reply->comment }}</p>
+
+                                                <!-- Show delete button only for Admin and the user who made the reply -->
+                                                @if (Auth::check() && (Auth::user()->id === $reply->user_id || Auth::user()->role === 'admin'))
+                                                    <form action="{{ route('comment.delete', $reply) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        @endforeach
+
+                                        @if (Auth::check())
+                                            <form action="{{ route('comment.reply', $comment) }}" method="POST" class="mt-3">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label for="reply-title-{{ $comment->id }}" class="form-label">Reply Title</label>
+                                                    <input name="title" id="reply-title-{{ $comment->id }}" class="form-control" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="reply-comment-{{ $comment->id }}" class="form-label">Your Reply</label>
+                                                    <textarea name="comment" id="reply-comment-{{ $comment->id }}" class="form-control" rows="2" required></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Reply</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -117,7 +168,7 @@
                     @enderror
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                
+
             @endif
         </section>
         <div class="space" style="margin-bottom: 150px"></div>

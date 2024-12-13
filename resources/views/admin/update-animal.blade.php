@@ -1,18 +1,14 @@
 @extends('layouts.app')
 @section('content')
-@session('success')
-    <div class="alert alert-success">
-        Animal Succesfully Added
-    </div>
-@endsession
 <br>
 <div class="container">
-    <h1>Add New Animal</h1>
-    <form class="row g-4" action="{{ route('animal.added') }}" method="post" enctype="multipart/form-data">
+    <h1>Update Animal Data</h1>
+    <form action="{{ route('animal.updated', $animal) }}" class="row g-4" method="post" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
         <div class="col-12">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+            <input type="text" class="form-control" id="name" name="name" value="{{$animal->name}}">
             @error('name')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -20,7 +16,7 @@
         <div class="col-3">
             <label for="height" class="form-label">Height</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="height" name="height" value="{{old('height')}}">
+                <input type="text" class="form-control" id="height" name="height" value="{{$animal->height}}">
                 <span class="input-group-text" id="basic-addon2">cm</span>
             </div>
             @error('height')
@@ -30,7 +26,7 @@
         <div class="col-3">
             <label for="weight" class="form-label">Weight</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="weight" name="weight" value="{{old('weight')}}">
+                <input type="text" class="form-control" id="weight" name="weight" value="{{$animal->weight}}">
                 <span class="input-group-text" id="basic-addon2">kg</span>
             </div>
             @error('weight')
@@ -39,7 +35,7 @@
         </div>
         <div class="col-3">
             <label for="color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="color" name="color" value="{{old('color')}}">
+            <input type="text" class="form-control" id="color" name="color" value="{{$animal->color}}">
             @error('color')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -47,7 +43,7 @@
         <div class="col-3">
             <label for="lifespan" class="form-label">Lifespan</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="lifespan" name="lifespan" value="{{old('lifespan')}}">
+                <input type="text" class="form-control" id="lifespan" name="lifespan" value="{{$animal->lifespan}}">
                 <span class="input-group-text" id="basic-addon2">years</span>
             </div>
             @error('lifespan')
@@ -56,21 +52,21 @@
         </div>
         <div class="col-3">
             <label for="diet" class="form-label">Diet</label>
-            <input type="text" class="form-control" id="diet" name="diet" value="{{old('diet')}}">
+            <input type="text" class="form-control" id="diet" name="diet" value="{{$animal->diet}}">
             @error('diet')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-3">
             <label for="habitat" class="form-label">Habitat</label>
-            <input type="text" class="form-control" id="habitat" name="habitat" value="{{old('habitat')}}">
+            <input type="text" class="form-control" id="habitat" name="habitat" value="{{$animal->habitat}}">
             @error('habitat')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-3">
             <label for="predators" class="form-label">Predators</label>
-            <input type="text" class="form-control" id="predators" name="predators" value="{{old('predators')}}">
+            <input type="text" class="form-control" id="predators" name="predators" value="{{$animal->predators}}">
             @error('predators')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -78,7 +74,7 @@
         <div class="col-3">
             <label for="avgspeed" class="form-label">Average Speed</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="avgspeed" name="avgspeed" value="{{old('avgspeed')}}">
+                <input type="text" class="form-control" id="avgspeed" name="avgspeed" value="{{$animal->avgspeed}}">
                 <span class="input-group-text" id="basic-addon2">km/h</span>
             </div>
             @error('avgspeed')
@@ -88,7 +84,7 @@
         <div class="col-3">
             <label for="topspeed" class="form-label">Top Speed</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="topspeed" name="topspeed" value="{{old('topspeed')}}">
+                <input type="text" class="form-control" id="topspeed" name="topspeed" value="{{$animal->topspeed}}">
                 <span class="input-group-text" id="basic-addon2">km/h</span>
             </div>
             @error('topspeed')
@@ -97,21 +93,21 @@
         </div>
         <div class="col-3">
             <label for="countries" class="form-label">Countries</label>
-            <input type="text" class="form-control" id="countries" name="countries" value="{{old('countries')}}">
+            <input type="text" class="form-control" id="countries" name="countries" value="{{$animal->countries}}">
             @error('countries')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-3">
             <label for="conservationStatus" class="form-label">Conservation Status</label>
-            <input type="text" class="form-control" id="conservationStatus" name="conservationStatus" value="{{old('conservationStatus')}}">
+            <input type="text" class="form-control" id="conservationStatus" name="conservationStatus" value="{{$animal->conservationStatus}}">
             @error('conservationStatus')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-3">
             <label for="family" class="form-label">Family</label>
-            <input type="text" class="form-control" id="family" name="family" value="{{old('family')}}">
+            <input type="text" class="form-control" id="family" name="family" value="{{$animal->family}}">
             @error('family')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -119,7 +115,7 @@
         <div class="col-6">
             <label for="gestationPeriod" class="form-label">Gestation Period</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="gestationPeriod" name="gestationPeriod" value="{{old('gestationPeriod')}}">
+                <input type="text" class="form-control" id="gestationPeriod" name="gestationPeriod" value="{{$animal->gestationPeriod}}">
                 <span class="input-group-text" id="basic-addon2">days</span>
             </div>
             @error('gestationPeriod')
@@ -128,13 +124,17 @@
         </div>
         <div class="col-6">
             <label for="socialStructure" class="form-label">Social Structure</label>
-            <input type="text" class="form-control" id="socialStructure" name="socialStructure" value="{{old('socialStructure')}}">
+            <input type="text" class="form-control" id="socialStructure" name="socialStructure" value="{{$animal->socialStructure}}">
             @error('socialStructure')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-12">
-            <label for="image" class="form-label">Image</label>
+            <label for="">Current Image</label>
+            <br>
+            <img src="{{ asset($animal->image) }}" class="img-thumbnail" alt="" srcset="" style="max-height: 200px; align-self: center; margin-bottom:10px;">
+            <br>
+            <label for="image" class="form-label">New Image</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="image" name="image">
                 <span class="input-group-text" id="basic-addon2">.jpg</span>
@@ -145,17 +145,17 @@
         </div>
         <div class="col-12">
             <label for="description" class="form-label">Description</label>
-            <textarea type="text" class="form-control" id="description" name="description" rows="5"></textarea>
+            <textarea type="text" class="form-control" id="description" name="description" rows="5">{{$animal->description}}</textarea>
             @error('description')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
         </div>
         <br>
         <div class="col-3">
-            <button type="submit" class="btn btn-primary">Add Animal</button>
+            <button type="submit" class="btn btn-primary">Update Animal Data</button>
         </div>
     </form>
     <br> <br>
-    <a href="{{ route('animals') }}" class="btn btn-dark">Back</a>
+    <a href="{{ route('read-more', $animal) }}" class="btn btn-dark">Back</a>
 </div>
 @endsection
