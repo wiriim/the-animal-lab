@@ -18,12 +18,18 @@
           <li class="nav-item me-3">
             <a class="nav-link {{Route::is('about-us') ? 'text-decoration-underline' : ''}}" href="{{ route('about-us') }}">About Us</a>
           </li>
+          @if (Auth::check())
+            @if (Auth::user()->role === 'admin')
+                <li class="nav-item me-3">
+                    <a class="nav-link {{Route::is('viewAllUser') ? 'text-decoration-underline' : ''}}" href="{{ route('admin.viewAllUser')}}">View Users</a>
+                </li>
+            @endif
+          @endif
           @if (!Auth::check())
             <li class="nav-item me-3">
               <a class="nav-link {{Route::is('login') ? 'text-decoration-underline' : ''}}" href="{{ route('login') }}">Login</a>
             </li>
           @endif
-          
           @if (Auth::check())
             <li class="nav-item me-3">
               <a class="nav-link {{Route::is('profile') ? 'text-decoration-underline' : ''}}" href="{{ route('profile') }}">{{ Auth::user()->name}}</a>

@@ -72,3 +72,7 @@ Route::post('/contact-us/send', [MailController::class, 'sendMail'])->name('cont
 Route::get('/admin/update/{animal}', [AnimalController::class,'updatePage'])->name('animal.updatePage');
 
 Route::put('/admin/updated/{animal}', [AnimalController::class,'update'])->name( 'animal.updated');
+
+Route::get('/admin/view', [UserController::class, 'viewAllUser'])->name('admin.viewAllUser');
+
+Route::delete('/admin/view/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.deleteUser');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -106,5 +107,33 @@ class UserController extends Controller
         }
 
         return view('admin.add-animal');
+    }
+
+    public function viewAllUser(){
+        $user = Auth::user();
+
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        $users = DB::table('users')->where('role','=','user')->paginate(10);
+
+        return view('admin.viewUser',['users' => $users]);
+    }
+
+    public function deleteUser($id){
+        $user = Auth::user();
+
+        if(! Gate::allows('isAdmin', $user)){
+            abort(403);
+        }
+
+        $deleted = User::destroy($id);
+
+        if($deleted){
+            return back()->with('deleted', true);
+        }else{
+            return back()->with('failed', true);
+        }
     }
 }
