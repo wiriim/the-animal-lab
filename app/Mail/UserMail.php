@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,16 +15,16 @@ class UserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $userEmail;
+    protected $user;
     protected $formData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($userEmail, $formData)
+    public function __construct($user, $formData)
     {
         //
-        $this->userEmail = $userEmail;
+        $this->user = $user;
         $this->formData = $formData;
     }
 
@@ -33,7 +34,10 @@ class UserMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: $this->userEmail,
+            from: new Address('verified-office365-email@demomailtrap.com', 'The Animal Lab'),
+            replyTo: [
+                new Address($this->user['email'], $this->user['name']), // User's email as Reply-To
+            ],
             subject: $this->formData['subject'],
         );
     }

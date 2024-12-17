@@ -18,7 +18,7 @@ class MailController extends Controller
             'subject' => 'required|in:Feedback,Help,Animal Suggestion',
             'description' => 'required|max:1200',
             'attachment.*' => 'mimes:jpg,jpeg,png,pdf',
-            'attachment' => ['bail', new AttachmentSize(5)],
+            // 'attachment' => ['bail', new AttachmentSize(5)],
         ], [
             'subject.in' => 'The selected subject is invalid. Please choose a valid option.',
             'attachment.*.mimes' => 'Each attachment must be a file of type: jpg, jpeg, png, pdf.',
@@ -37,7 +37,12 @@ class MailController extends Controller
             ];
         }
         
-        Mail::to('medygunawan32@gmail.com')->send(new UserMail(Auth::user()->email, $data));
+        $user = [
+            'email' => Auth::user()->email,
+            'name' => Auth::user()->name
+        ];
+        
+        Mail::to('medy.gunawan@binus.ac.id')->send(new UserMail($user, $data));
         
         return back()->with('success', true);
     }
