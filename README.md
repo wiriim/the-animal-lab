@@ -4,6 +4,17 @@
 
 This project aims to show a whole variety of animals be it exotic or generic, and create a community of people where they can comment and share their thoughts about the animals they love. 
 
+- Home
+![home](public/images/homepage-img.png)
+
 - About Us
 ![aboutus](public/images/v1-aboutus-img.png)
 
+- Animals
+![animals](public/images/animals-compact.png)
+
+- Animals Forum
+![animals](public/images/animals-forum.png.png)
+
+- Animals Detail
+![animals](public/images/animals-detail.png)
