@@ -14,7 +14,10 @@ This project aims to show a whole variety of animals be it exotic or generic, an
 ![animals](public/images/animals-compact.png)
 
 - Animals Forum
-![animals](public/images/animals-forum.png.png)
+![animals](public/images/animals-forum.png)
 
 - Animals Detail
 ![animals](public/images/animals-detail.png)
+
+- Profile
+![animals](public/images/animals-profile.png)
